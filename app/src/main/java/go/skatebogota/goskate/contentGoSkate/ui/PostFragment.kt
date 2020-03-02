@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import go.skatebogota.goskate.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.post.*
 
 class PostFragment : Fragment() {
@@ -28,8 +29,6 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.post, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +38,6 @@ class PostFragment : Fragment() {
 
 
         galery_post.setOnClickListener {
-
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
@@ -48,6 +46,7 @@ class PostFragment : Fragment() {
                 PICK_IMAGE_CODE
             )
         }
+
 
     }
 }

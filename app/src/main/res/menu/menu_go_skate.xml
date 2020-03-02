@@ -3,17 +3,17 @@
 
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:title="@string/home_name"
         android:icon="@drawable/ic_action_home" />
 
     <item
-        android:id="@+id/map"
+        android:id="@+id/goSkateMap"
         android:title="@string/map_name"
         android:icon="@drawable/ic_action_map" />
 
     <item
-        android:id="@+id/shop"
+        android:id="@+id/ShopFrafment"
         android:title="@string/shop_name"
         android:icon="@drawable/ic_action_shop" />
 </menu>

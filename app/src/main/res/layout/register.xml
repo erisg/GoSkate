@@ -19,73 +19,81 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/loglgin" />
 
-    <TextView
-        android:id="@+id/nameTextView"
+    <EditText
+        android:id="@+id/nameEditText"
         android:layout_width="267dp"
         android:layout_height="32dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/style_edit"
         android:drawableStart="@drawable/ic_action_name"
+        android:drawableLeft="@drawable/ic_action_name"
         android:gravity="center_vertical"
         android:hint="@string/name_register"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoimageViewR" />
 
-    <TextView
-        android:id="@+id/emallTextViewR"
+    <EditText
+        android:id="@+id/emallEditTextR"
         android:layout_width="267dp"
         android:layout_height="32dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/style_edit"
         android:drawableStart="@drawable/ic_action_email"
+        android:drawableLeft="@drawable/ic_action_email"
         android:gravity="center_vertical"
         android:hint="@string/email_login"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+        app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 
-    <TextView
-        android:id="@+id/passwordTextViewR"
+    <EditText
+        android:id="@+id/passwordEditTextR"
         android:layout_width="267dp"
         android:layout_height="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/style_edit"
         android:drawableStart="@drawable/ic_action_password"
+        android:drawableLeft="@drawable/ic_action_password"
         android:gravity="center_vertical"
         android:hint="@string/passsword_login"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emallTextViewR" />
+        app:layout_constraintTop_toBottomOf="@id/emallEditTextR" />
 
-    <TextView
-        android:id="@+id/passwordTwoTextView"
+    <EditText
+        android:id="@+id/passwordTwoEditText"
         android:layout_width="267dp"
         android:layout_height="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/style_edit"
         android:drawableStart="@drawable/ic_action_password"
+        android:drawableLeft="@drawable/ic_action_password"
         android:gravity="center_vertical"
         android:hint="@string/confirm_password_r"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordTextViewR" />
+        app:layout_constraintTop_toBottomOf="@id/passwordEditTextR" />
 
     <RadioGroup
         android:id="@+id/sexRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/passwordTwoTextView"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="50dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordTwoEditText">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -100,31 +108,34 @@
             android:text="@string/women_register" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/AgeTextView"
+    <EditText
+        android:id="@+id/AgeEditText"
         android:layout_width="267dp"
         android:layout_height="32dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/style_edit"
         android:drawableStart="@drawable/ic_action_age"
+        android:drawableLeft="@drawable/ic_action_age"
         android:gravity="center_vertical"
         android:hint="@string/age_register"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sexRadioGroup" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_sign_up"
         android:layout_width="156dp"
         android:layout_height="64dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/regist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AgeTextView" />
+        app:layout_constraintTop_toBottomOf="@id/AgeEditText" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

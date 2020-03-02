@@ -2,7 +2,13 @@
     <string name="app_name">GoSkate</string>
     <string name="title_activity_go_skate_map">Map</string>
     <string name="shop_name">SHOP</string>
-    <string name="map_name">MAP</string>
+
+
+    // LOGIN
+
+
+    // REGISTRO
+
     <string name="home_name">HOME</string>
     <string name="email_login">EMAIL</string>
     <string name="passsword_login">CONTRASEÑA</string>
@@ -11,4 +17,14 @@
     <string name="age_register">EDAD</string>
     <string name="men_radio_group">HOMBRE</string>
     <string name="women_register">MUJER</string>
+
+    //CONTENT
+
+    //MAP
+
+    <string name="map_name">MAP</string>
+    <string name="email_valid">POR FAVOR INGRESAR EMAIL</string>
+    <string name="info_valid">POR FAVOR INGRESAR INFORMACION</string>
+    <string name="not_acount">¿AUN NO TIENES UNA CUENTA?</string>
+    <string name="logo_off">CERRAR SESION</string>
 </resources>

@@ -32,7 +32,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         when (v!!.id) {
-            //   R.id.btn_post -> navController!!.navigate(R.id.action_homeFragment_to_postFragment)
+            R.id.btn_post -> navController!!.navigate(R.id.action_homeFragment_to_postFragment2)
         }
     }
 }
