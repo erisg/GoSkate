@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/go_skate_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="go.skatebogota.goskate.contentGoSkate.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home" />
+    <fragment
+        android:id="@+id/goSkateMap2"
+        android:name="go.skatebogota.goskate.mapGoSkate.GoSkateMap"
+        android:label="activity_go_skate_map"
+        tools:layout="@layout/activity_go_skate_map" />
+    <fragment
+        android:id="@+id/shopFrafment2"
+        android:name="go.skatebogota.goskate.contentGoSkate.ui.ShopFrafment"
+        android:label="ShopFrafment"
+        tools:layout="@layout/shop" />
+</navigation>

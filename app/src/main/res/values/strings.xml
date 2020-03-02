@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoSkate</string>
+    <string name="title_activity_go_skate_map">Map</string>
+    <string name="shop_name">SHOP</string>
+    <string name="map_name">MAP</string>
+    <string name="home_name">HOME</string>
+</resources>
