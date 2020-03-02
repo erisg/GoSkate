@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondosiluetas">
+
+    <ImageView
+        android:id="@+id/logoimageViewR"
+        android:layout_width="147dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/loglgin" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="267dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/style_edit"
+        android:drawableStart="@drawable/ic_action_name"
+        android:gravity="center_vertical"
+        android:hint="@string/name_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoimageViewR" />
+
+    <TextView
+        android:id="@+id/emallTextViewR"
+        android:layout_width="267dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/style_edit"
+        android:drawableStart="@drawable/ic_action_email"
+        android:gravity="center_vertical"
+        android:hint="@string/email_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+    <TextView
+        android:id="@+id/passwordTextViewR"
+        android:layout_width="267dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/style_edit"
+        android:drawableStart="@drawable/ic_action_password"
+        android:gravity="center_vertical"
+        android:hint="@string/passsword_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emallTextViewR" />
+
+    <TextView
+        android:id="@+id/passwordTwoTextView"
+        android:layout_width="267dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/style_edit"
+        android:drawableStart="@drawable/ic_action_password"
+        android:gravity="center_vertical"
+        android:hint="@string/confirm_password_r"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextViewR" />
+
+    <RadioGroup
+        android:id="@+id/sexRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/passwordTwoTextView"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="50dp">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/men_radio_group" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/women_register" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/AgeTextView"
+        android:layout_width="267dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/style_edit"
+        android:drawableStart="@drawable/ic_action_age"
+        android:gravity="center_vertical"
+        android:hint="@string/age_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sexRadioGroup" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="156dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/regist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AgeTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
