@@ -40,7 +40,7 @@ class Login : AppCompatActivity() {
         }
     }
 
-    fun validateEditText(editText: EditText) {
+    private fun validateEditText(editText: EditText) {
         editText.error = getString(R.string.info_valid)
         editText.requestFocus()
     }
