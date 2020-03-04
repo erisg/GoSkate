@@ -1,5 +1,6 @@
 package go.skatebogota.goskate.authGoSkate.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.authGoSkate.ui.viewModel.UserViewModel
+import go.skatebogota.goskate.contentGoSkate.MainActivity
 import kotlinx.android.synthetic.main.register.*
 
 
@@ -21,6 +23,7 @@ class UserRegister : AppCompatActivity() {
     var sexUser: Boolean? = null
     private lateinit var ageUser: String
     private var mAuth = FirebaseAuth.getInstance();
+    lateinit var response : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +56,22 @@ class UserRegister : AppCompatActivity() {
             userPassword != userPasswordTwo -> {
                 Toast.makeText(this, "LAS CONTRSE;AS NO COINCIDEN", Toast.LENGTH_LONG).show()
             }
+
             else -> {
                 userViewModel.registerUser(userEmail, userPasswordTwo)
+                userResponse()
             }
         }
 
+    }
+
+    private fun userResponse(){
+        response = userViewModel.getUserRegisterResponse()
+        if(response == "fine"){
+            startActivity(Intent(this, MainActivity::class.java))
+        }else{
+            Toast.makeText(this,"$response",Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun validateEditText(editText: EditText) {

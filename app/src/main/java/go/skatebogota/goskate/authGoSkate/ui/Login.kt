@@ -3,19 +3,22 @@ package go.skatebogota.goskate.authGoSkate.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.authGoSkate.ui.viewModel.UserViewModel
 import go.skatebogota.goskate.contentGoSkate.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
 
-    private var userName: String? = null
+    private var userEmail: String? = null
     private var userPassword: String? = null
+    private val userViewModel: UserViewModel by lazy { UserViewModel.getUserViewModel(this)!! }
     private lateinit var auth: FirebaseAuth
+    lateinit var response : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +35,27 @@ class Login : AppCompatActivity() {
     }
 
     private fun validateInfo() {
-        if (emailEditText.text.toString().isEmpty()) {
+        userEmail = emailEditText.text.toString()
+        userPassword = passwordEditText.text.toString()
+        if (emailEditText.text.toString().isEmpty()||passwordEditText.text.toString().isEmpty() ) {
             validateEditText(emailEditText)
-        }
-        if (passwordEditText.text.toString().isEmpty()) {
             validateEditText(passwordEditText)
+        } else {
+            userViewModel.loginUser( userEmail!! , userPassword!!)
+            userResponse()
         }
     }
+
+    private fun userResponse(){
+        response = userViewModel.getUserLoginResponse()
+        if(response == "fine"){
+            startActivity(Intent(this, MainActivity::class.java))
+        }else{
+            Toast.makeText(this,"USUARIO NO ENCONTRADO",Toast.LENGTH_LONG).show()
+        }
+    }
+
+
 
     private fun validateEditText(editText: EditText) {
         editText.error = getString(R.string.info_valid)

@@ -15,6 +15,15 @@ class UserViewModel(@NonNull application: Application) : AndroidViewModel(applic
         repositoryUser.registerUser(email, password)
     }
 
+    fun getUserRegisterResponse() = repositoryUser.response
+
+    fun loginUser(email: String, password: String){
+        repositoryUser.loginUser(email , password)
+    }
+
+    fun getUserLoginResponse() = repositoryUser.response
+
+
     companion object {
 
         private var INSTANCE: UserViewModel? = null
