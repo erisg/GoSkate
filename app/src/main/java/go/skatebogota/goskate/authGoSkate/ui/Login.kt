@@ -26,7 +26,8 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         loginBtn.setOnClickListener {
-            validateInfo()
+         //   validateInfo()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         noAccountTextView.setOnClickListener {
