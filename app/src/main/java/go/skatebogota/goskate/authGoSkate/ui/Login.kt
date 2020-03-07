@@ -25,6 +25,9 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
+
+
+
         loginBtn.setOnClickListener {
          //   validateInfo()
             startActivity(Intent(this, MainActivity::class.java))

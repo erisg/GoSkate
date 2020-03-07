@@ -19,8 +19,8 @@
 
     <Button
         android:id="@+id/btn_galery"
-        android:layout_width="76dp"
-        android:layout_height="73dp"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
         android:layout_marginBottom="32dp"
         android:background="@mipmap/cam_post"
         app:layout_constraintBottom_toTopOf="@id/btn_save_post"
@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/btn_save_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="33dp"
         android:layout_marginBottom="30dp"
         android:background="@color/colorPrimary"
         android:text="publicar"
