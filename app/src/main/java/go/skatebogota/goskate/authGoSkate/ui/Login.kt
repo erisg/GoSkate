@@ -29,8 +29,8 @@ class Login : AppCompatActivity() {
 
 
         loginBtn.setOnClickListener {
-         //   validateInfo()
-            startActivity(Intent(this, MainActivity::class.java))
+            validateInfo()
+            //startActivity(Intent(this, MainActivity::class.java))
         }
 
         noAccountTextView.setOnClickListener {
@@ -55,7 +55,7 @@ class Login : AppCompatActivity() {
         if(response == "fine"){
             startActivity(Intent(this, MainActivity::class.java))
         }else{
-            Toast.makeText(this,"USUARIO NO ENCONTRADO",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"USUARIO NO ENCONTRADO",Toast.LENGTH_SHORT).show()
         }
     }
 

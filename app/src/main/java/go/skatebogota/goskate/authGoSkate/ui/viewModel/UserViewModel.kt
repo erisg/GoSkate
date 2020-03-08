@@ -5,7 +5,7 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
-import go.skatebogota.goskate.authGoSkate.ui.rpository.RepositoryUser
+import go.skatebogota.goskate.authGoSkate.ui.repository.RepositoryUser
 
 class UserViewModel(@NonNull application: Application) : AndroidViewModel(application) {
 

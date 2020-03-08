@@ -1,9 +1,6 @@
-package go.skatebogota.goskate.authGoSkate.ui.rpository
+package go.skatebogota.goskate.authGoSkate.ui.repository
 
 import android.app.Application
-import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
 class RepositoryUser(application: Application) {
