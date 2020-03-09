@@ -41,7 +41,7 @@
         <activity
             android:name=".mapGoSkate.GoSkateMap"
             android:label="@string/title_activity_go_skate_map" />
-        <activity android:name=".contentGoSkate.MainActivity">
+        <activity android:name=".contentGoSkate.ui.MainActivity">
 
         </activity>
 

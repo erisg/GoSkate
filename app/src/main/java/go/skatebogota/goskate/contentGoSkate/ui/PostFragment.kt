@@ -27,10 +27,7 @@ import java.util.*
 class PostFragment : Fragment() {
 
     private val viewModelContent: ViewModelContent by lazy { ViewModelContent.getViewModelContent(this)!! }
-
     private var filePath: Uri? = null
-
-
 
     companion object {
         private val PICK_IMAGE_CODE = 1234
@@ -46,8 +43,6 @@ class PostFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         btn_galery.setOnClickListener {
             fileChooser()

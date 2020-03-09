@@ -10,14 +10,14 @@ class RepositoryContent (application: Application) {
 
     var response : String = ""
 
-    private var storage: FirebaseStorage? = null
-    private var storageReference: StorageReference? = null
+    private var storage: FirebaseStorage =  FirebaseStorage.getInstance()
+    private var storageReference: StorageReference? = storage.reference
 
+    /**
+     * Se sube a firebase foto del post
+     */
 
     fun upLoadImagePost(filePath: Uri?){
-        storage = FirebaseStorage.getInstance()
-        storageReference = storage!!.reference
-
         if (filePath != null) {
 
             val imageRef = storageReference!!.child("images/" + UUID.randomUUID().toString())
@@ -35,4 +35,12 @@ class RepositoryContent (application: Application) {
         }
 
     }
+
+
+    /**
+     * Se trae de firebase la imagen del post
+     */
+
+    fun getImagePost() =  storageReference!!.child("images/")
+
 }

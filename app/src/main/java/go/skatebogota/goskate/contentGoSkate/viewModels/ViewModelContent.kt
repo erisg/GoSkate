@@ -17,9 +17,13 @@ class ViewModelContent(@NonNull application: Application) : AndroidViewModel(app
       repositoryContent.upLoadImagePost(filePath)
     }
 
+    /**
+     * Trae la respuesta
+     */
     fun getFirebaseResponseImagePost() = repositoryContent.response
 
 
+    fun getImagePost() = repositoryContent.getImagePost().downloadUrl
 
     companion object {
         private var INSTANCE: ViewModelContent? = null

@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.authGoSkate.ui.viewModel.UserViewModel
-import go.skatebogota.goskate.contentGoSkate.MainActivity
+import go.skatebogota.goskate.contentGoSkate.ui.MainActivity
 import kotlinx.android.synthetic.main.register.*
 
 

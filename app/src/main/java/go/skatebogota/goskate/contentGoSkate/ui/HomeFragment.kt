@@ -9,9 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.contentGoSkate.adapters.RecyclerPostAdapter
+import go.skatebogota.goskate.contentGoSkate.viewModels.ViewModelContent
+import kotlinx.android.synthetic.main.home.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
+    private val viewModelContent: ViewModelContent by lazy {
+        ViewModelContent.getViewModelContent(
+            this
+        )!!
+    }
     private var navController: NavController? = null
 
     override fun onCreateView(
@@ -26,11 +34,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btn_post).setOnClickListener(this)
+        getDataPost()
+    }
 
+    private fun getDataPost() {
+        val images = viewModelContent.getImagePost()
+     //   recyclerPost.adapter = RecyclerPostAdapter(images)
     }
 
     override fun onClick(v: View?) {
-
         when (v!!.id) {
             R.id.btn_post -> navController!!.navigate(R.id.action_homeFragment_to_postFragment2)
         }
