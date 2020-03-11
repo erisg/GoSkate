@@ -20,22 +20,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(nav, navController)
+        checkUserStatus()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.out) {
-            Toast.makeText(this, "ADIOS !!", Toast.LENGTH_LONG).show()
-            logoOut()
+        var id = item.itemId
+        if(id == R.id.out_toolbar){
+            auth.signOut()
+            checkUserStatus()
         }
         return super.onOptionsItemSelected(item)
     }
 
+    private fun checkUserStatus(){
+
+        if(auth.currentUser != null){
+           //jklp
+        }else{
+            logoOut()
+        }
+    }
+
     private fun logoOut() {
         startActivity(Intent(this, Login::class.java))
-        auth.signOut()
     }
 }
