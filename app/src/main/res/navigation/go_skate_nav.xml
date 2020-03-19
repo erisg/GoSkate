@@ -27,5 +27,9 @@
         android:id="@+id/postFragment2"
         android:name="go.skatebogota.goskate.contentGoSkate.ui.PostFragment"
         android:label="PostFragment"
-        tools:layout="@layout/post" />
+        tools:layout="@layout/post" >
+        <action
+            android:id="@+id/action_postFragment2_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

@@ -55,7 +55,7 @@ class Login : AppCompatActivity() {
         if(response == "fine"){
             startActivity(Intent(this, MainActivity::class.java))
         }else{
-            Toast.makeText(this,"USUARIO NO ENCONTRADO",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"$response",Toast.LENGTH_SHORT).show()
         }
     }
 

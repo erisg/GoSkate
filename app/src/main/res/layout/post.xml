@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="@color/common_google_signin_btn_tint"
     android:orientation="vertical">
 
     <ImageView
@@ -17,6 +17,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="327dp"
+        android:layout_height="52dp"
+        android:hint="NOMBRE RAIDER"
+        app:layout_constraintBottom_toTopOf="@id/place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/place"
+        android:layout_width="327dp"
+        android:layout_height="52dp"
+        android:hint="PLACE"
+        app:layout_constraintBottom_toTopOf="@id/btn_galery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/btn_galery"
         android:layout_width="51dp"
@@ -26,6 +44,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_save_post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/btn_save_post"
