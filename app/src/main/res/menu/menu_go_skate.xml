@@ -4,13 +4,18 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="@string/home_name"
-        android:icon="@drawable/ic_action_home" />
+        android:icon="@drawable/ic_action_init"
+        android:title="@string/home_name" />
 
     <item
         android:id="@+id/goSkateMap"
         android:title="@string/map_name"
         android:icon="@drawable/ic_action_map" />
+
+    <item
+        android:id="@+id/notificationFragment"
+        android:icon="@drawable/ic_action_notification"
+        android:title="@string/notification" />
 
     <item
         android:id="@+id/ShopFrafment"

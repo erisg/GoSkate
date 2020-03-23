@@ -26,14 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var id = item.itemId
-        if(id == R.id.out_toolbar){
-            auth.signOut()
-            checkUserStatus()
-        }
-        return super.onOptionsItemSelected(item)
-    }
+
 
     private fun checkUserStatus(){
 

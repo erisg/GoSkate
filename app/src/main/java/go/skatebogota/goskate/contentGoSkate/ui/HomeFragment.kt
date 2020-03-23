@@ -22,7 +22,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val getUser = FirebaseAuth.getInstance()
 
     override fun onCreateView(
-
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.home, container, false)
     }

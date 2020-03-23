@@ -26,7 +26,8 @@ class PostFragment : Fragment(){
         private const val PICK_IMAGE_CODE = 1234
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.post, container, false)
     }
 

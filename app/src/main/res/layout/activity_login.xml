@@ -58,28 +58,34 @@
         app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
     <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="180dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/login"
+        android:id="@+id/googleButton"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="179dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/login"
+        app:layout_constraintBottom_toTopOf="@id/noAccountTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/googleButton"/>
 
     <TextView
         android:id="@+id/noAccountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/not_acount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
