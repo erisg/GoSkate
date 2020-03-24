@@ -110,8 +110,8 @@
             android:text="@string/women_register" />
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/AgeEditText"
+    <TextView
+        android:id="@+id/AgeTextView"
         android:layout_width="267dp"
         android:layout_height="45dp"
         android:layout_marginStart="50dp"
@@ -137,7 +137,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AgeEditText" />
+        app:layout_constraintTop_toBottomOf="@id/AgeTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

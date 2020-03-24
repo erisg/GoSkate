@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.mapGoSkate
+package go.skatebogota.goskate.ui.ui.map
 
 
 import android.os.Bundle

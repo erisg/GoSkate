@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.contentGoSkate.repository
+package go.skatebogota.goskate.data.repositories
 
 import android.app.Application
 import android.net.Uri

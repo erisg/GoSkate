@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.contentGoSkate.viewModels
+package go.skatebogota.goskate.ui.ui.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -6,11 +6,12 @@ import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
-import go.skatebogota.goskate.contentGoSkate.repository.RepositoryContent
+import go.skatebogota.goskate.data.repositories.RepositoryContent
 
 class ViewModelContent(@NonNull application: Application) : AndroidViewModel(application) {
 
-    private val repositoryContent = RepositoryContent(application)
+    private val repositoryContent =
+        RepositoryContent(application)
 
 
     fun upLoadImagePost(filePath: Uri?){
@@ -28,7 +29,8 @@ class ViewModelContent(@NonNull application: Application) : AndroidViewModel(app
     companion object {
         private var INSTANCE: ViewModelContent? = null
         fun getViewModelContent(fragment: Fragment? = null): ViewModelContent? {
-            INSTANCE = ViewModelProvider(fragment!!).get(ViewModelContent::class.java)
+            INSTANCE = ViewModelProvider(fragment!!).get(
+                ViewModelContent::class.java)
             return INSTANCE
         }
     }

@@ -8,13 +8,17 @@
 
 
     // REGISTRO
+    <string name="date">FECHA NACIMIENTO</string>
+
+
+
 
     <string name="home_name">HOME</string>
     <string name="email_login">EMAIL</string>
     <string name="passsword_login">CONTRASEÑA</string>
     <string name="name_register">NOMBRE</string>
     <string name="confirm_password_r">COMFIRMAR CONTRASEÑA</string>
-    <string name="age_register">EDAD</string>
+    <string name="age_register">FECHA NACIMIENTO</string>
     <string name="men_radio_group">HOMBRE</string>
     <string name="women_register">MUJER</string>
 

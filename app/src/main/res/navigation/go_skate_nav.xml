@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="go.skatebogota.goskate.contentGoSkate.ui.HomeFragment"
+        android:name="go.skatebogota.goskate.ui.ui.content.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/home">
         <action
@@ -15,17 +15,17 @@
     </fragment>
     <fragment
         android:id="@+id/goSkateMap"
-        android:name="go.skatebogota.goskate.mapGoSkate.GoSkateMap"
+        android:name="go.skatebogota.goskate.ui.ui.map.GoSkateMap"
         android:label="GoSkateMap"
         tools:layout="@layout/activity_go_skate_map" />
     <fragment
         android:id="@+id/ShopFrafment"
-        android:name="go.skatebogota.goskate.contentGoSkate.ui.ShopFrafment"
+        android:name="go.skatebogota.goskate.ui.ui.content.ShopFrafment"
         android:label="ShopFrafment"
         tools:layout="@layout/shop" />
     <fragment
         android:id="@+id/postFragment2"
-        android:name="go.skatebogota.goskate.contentGoSkate.ui.PostFragment"
+        android:name="go.skatebogota.goskate.ui.ui.content.PostFragment"
         android:label="PostFragment"
         tools:layout="@layout/post" >
         <action

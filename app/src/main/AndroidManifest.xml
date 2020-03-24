@@ -18,13 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".authGoSkate.ui.Login">
+
+        <activity android:name=".ui.ui.auth.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -39,13 +39,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".mapGoSkate.GoSkateMap"
+            android:name=".ui.ui.map.GoSkateMap"
             android:label="@string/title_activity_go_skate_map" />
-        <activity android:name=".contentGoSkate.ui.MainActivity">
+        <activity android:name=".ui.ui.content.MainActivity">
 
         </activity>
 
-        <activity android:name=".authGoSkate.ui.UserRegister">
+        <activity android:name=".ui.ui.auth.UserRegister">
 
         </activity>
 

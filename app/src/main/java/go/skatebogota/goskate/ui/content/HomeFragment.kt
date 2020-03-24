@@ -1,8 +1,7 @@
-package go.skatebogota.goskate.contentGoSkate.ui
+package go.skatebogota.goskate.ui.ui.content
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -11,9 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.contentGoSkate.adapters.RecyclerPostAdapter
-import go.skatebogota.goskate.contentGoSkate.viewModels.ViewModelContent
-import kotlinx.android.synthetic.main.home.*
+import go.skatebogota.goskate.ui.ui.viewmodels.ViewModelContent
 
 class HomeFragment : Fragment(), View.OnClickListener {
 

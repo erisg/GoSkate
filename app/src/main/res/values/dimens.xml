@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="app_bar_margin_start_picture_logo">10dp</dimen>
+    <dimen name="marginEditButttonsTable">2dp</dimen>
+</resources>

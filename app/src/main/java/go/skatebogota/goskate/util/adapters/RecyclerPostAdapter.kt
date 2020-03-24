@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.contentGoSkate.adapters
+package go.skatebogota.goskate.util.adapters
 
 import android.view.LayoutInflater
 import android.view.View

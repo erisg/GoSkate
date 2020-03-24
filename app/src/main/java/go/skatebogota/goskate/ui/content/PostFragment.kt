@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.contentGoSkate.ui
+package go.skatebogota.goskate.ui.ui.content
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -8,12 +8,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.contentGoSkate.viewModels.ViewModelContent
+import go.skatebogota.goskate.ui.ui.viewmodels.ViewModelContent
 import kotlinx.android.synthetic.main.post.*
 
 class PostFragment : Fragment(){
@@ -67,6 +66,8 @@ class PostFragment : Fragment(){
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
-            Intent.createChooser(intent, "SELECCIONA IMAGEN"), PICK_IMAGE_CODE)
+            Intent.createChooser(intent, "SELECCIONA IMAGEN"),
+            PICK_IMAGE_CODE
+        )
     }
 }

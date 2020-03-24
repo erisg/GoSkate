@@ -1,15 +1,13 @@
-package go.skatebogota.goskate.contentGoSkate.ui
+package go.skatebogota.goskate.ui.ui.content
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.firebase.auth.FirebaseAuth
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.authGoSkate.ui.Login
+import go.skatebogota.goskate.ui.ui.auth.Login
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
