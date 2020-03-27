@@ -7,24 +7,25 @@ import androidx.recyclerview.widget.RecyclerView
 import go.skatebogota.goskate.R
 import kotlinx.android.synthetic.main.item_post.view.*
 
-class RecyclerPostAdapter(var post: ArrayList<String>) : RecyclerView.Adapter<RecyclerPostAdapter.ImagePostViewHolder>() {
-    fun updateUsers(newUsers: List<String>) {
-        post.clear()
-        post.addAll(newUsers)
-        notifyDataSetChanged()
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ImagePostViewHolder(
+class RecyclerPostAdapter(var post:List<String>) : RecyclerView.Adapter<RecyclerPostAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
     )
     override fun getItemCount() = post.size
 
-    class ImagePostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val imageView = view.img_user
-        private val userName = view.place
-        private val userEmail = view.description
+   inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+         val imageView = view.img_user
+         val userName = view.placeEditText
+         val userEmail = view.description
+
+       fun bind(audio:List<String>) {
+       }
     }
 
-    override fun onBindViewHolder(holder: RecyclerPostAdapter.ImagePostViewHolder, position: Int) {
-      //  holder.bind(users[position])
+
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+     //
     }
 }

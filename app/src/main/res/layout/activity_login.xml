@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="viewmodel"
-            type="go.skatebogota.goskate.ui.ui.viewmodels.UserViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,13 +17,11 @@
             android:contentDescription="@string/email_login"
             app:layout_constraintBottom_toTopOf="@id/emailEditText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/loglgin" />
 
         <EditText
-            android:text="@={viewmodel.email}"
             android:id="@+id/emailEditText"
             android:layout_width="290dp"
             android:layout_height="45dp"
@@ -49,7 +40,6 @@
             app:layout_constraintTop_toBottomOf="@id/logoImageView" />
 
         <EditText
-            android:text="@={viewmodel.password}"
             android:id="@+id/passwordEditText"
             android:layout_width="290dp"
             android:layout_height="45dp"
@@ -68,38 +58,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
-        <Button
-            android:id="@+id/googleButton"
-            android:layout_width="290dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
 
         <Button
-            android:onClick="@{viewmodel.onLoginButtonClick}"
+            android:id="@+id/googleButton"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+        <TextView
+            android:id="@+id/login_whit_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INGRESAR CON GOOGLE"
+            app:layout_constraintBottom_toTopOf="@id/loginBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/googleButton"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
             android:id="@+id/loginBtn"
-            android:layout_width="179dp"
+            android:layout_width="163dp"
             android:layout_height="61dp"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/login"
-            app:layout_constraintBottom_toTopOf="@id/noAccountTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/googleButton" />
+            app:layout_constraintTop_toBottomOf="@id/login_whit_google" />
 
         <TextView
             android:id="@+id/noAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="@string/not_acount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loginBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>

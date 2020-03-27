@@ -6,30 +6,32 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="go.skatebogota.goskate.ui.ui.content.HomeFragment"
+        android:name="go.skatebogota.goskate.ui.content.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/home">
         <action
             android:id="@+id/action_homeFragment_to_postFragment2"
             app:destination="@id/postFragment2" />
     </fragment>
-    <fragment
+    <activity
         android:id="@+id/goSkateMap"
-        android:name="go.skatebogota.goskate.ui.ui.map.GoSkateMap"
-        android:label="GoSkateMap"
-        tools:layout="@layout/activity_go_skate_map" />
+        android:name="go.skatebogota.goskate.ui.map.MapsGoSkate"
+        android:label="maps_go_skate"
+        tools:layout="@layout/maps_go_skate" />
+
     <fragment
         android:id="@+id/ShopFrafment"
-        android:name="go.skatebogota.goskate.ui.ui.content.ShopFrafment"
+        android:name="go.skatebogota.goskate.ui.content.ShopFrafment"
         android:label="ShopFrafment"
         tools:layout="@layout/shop" />
     <fragment
         android:id="@+id/postFragment2"
-        android:name="go.skatebogota.goskate.ui.ui.content.PostFragment"
+        android:name="go.skatebogota.goskate.ui.content.PostFragment"
         android:label="PostFragment"
         tools:layout="@layout/post" >
         <action
             android:id="@+id/action_postFragment2_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
 </navigation>

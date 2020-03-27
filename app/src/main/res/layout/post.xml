@@ -17,16 +17,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/descriptionEditText"
         android:layout_width="327dp"
         android:layout_height="52dp"
         android:hint="NOMBRE RAIDER"
-        app:layout_constraintBottom_toTopOf="@id/place"
+        app:layout_constraintBottom_toTopOf="@id/placeEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/place"
+        android:id="@+id/placeEditText"
         android:layout_width="327dp"
         android:layout_height="52dp"
         android:hint="PLACE"

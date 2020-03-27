@@ -34,7 +34,7 @@
 
 
             <TextView
-                android:id="@+id/place"
+                android:id="@+id/placeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center"

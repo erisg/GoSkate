@@ -1,39 +1,35 @@
-package go.skatebogota.goskate.ui.ui.viewmodels
+package go.skatebogota.goskate.ui.viewmodels
 
-import android.view.View
+
 import androidx.lifecycle.ViewModel
+import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.data.repositories.RepositoryUser
 import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserRegister
 
 class UserViewModel : ViewModel() {
 
-    private val repositoryUser =
-        RepositoryUser()
+    private val repositoryUser = RepositoryUser()
     var authListener : AuthListenerResponseUserRegister? = null
+    var userVO:UserVO = UserVO()
 
     //login data
 
     var email:String? = null
     var password:String? = null
 
-    fun onLoginButtonClick(view : View){
-        if(email.isNullOrBlank() && password.isNullOrBlank()){
-            authListener?.onFailure()
-            return
-        }
-        authListener?.onSuccess()
-        repositoryUser.registerUser(this.email!!, this.password!!)
-    }
-
 
     fun registerUser(email: String, password: String) {
-        repositoryUser.registerUser(email, password)
+        userVO.userEmail = email
+        userVO.password = password
+        repositoryUser.registerUser(userVO)
     }
 
-    fun getUserRegisterResponse() = repositoryUser.response
+    fun getUserRegisterResponse() = repositoryUser.userResponse
 
     fun loginUser(email: String, password: String){
-        repositoryUser.loginUser(email , password)
+        userVO.userEmail = email
+        userVO.password = password
+        repositoryUser.loginUser(userVO)
     }
 
     fun getUserLoginResponse() = repositoryUser.response
@@ -44,6 +40,10 @@ class UserViewModel : ViewModel() {
      */
 
     fun saveInfoUser(userName :String , userEmail :String , userPassword :String , ageUser :String){
-        repositoryUser.saveInfoUser(userName , userEmail ,userPassword ,ageUser)
+        userVO.userName = userName
+        userVO.userEmail = userEmail
+        userVO.password = userPassword
+        userVO.birthDate = ageUser
+        repositoryUser.saveInfoUser(userVO)
     }
 }

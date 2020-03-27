@@ -2,36 +2,44 @@ package go.skatebogota.goskate.data.repositories
 
 import android.app.Application
 import android.net.Uri
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import go.skatebogota.goskate.data.models.PostVO
 import java.util.*
 
-class RepositoryContent (application: Application) {
+class RepositoryContent () {
 
-    var response : String = ""
+    var userResponse : String = ""
 
     private var storage: FirebaseStorage =  FirebaseStorage.getInstance()
     private var storageReference: StorageReference? = storage.reference
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     /**
      * Se sube a firebase foto del post
      */
 
-    fun upLoadImagePost(filePath: Uri?){
-        if (filePath != null) {
+    fun upLoadImagePost(postVO: PostVO){
+        postVO.userId = auth.currentUser?.uid
+        val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPosts")
+        if (postVO.userFilePath != null) {
+            val userMap = HashMap<String , Any>()
+            userMap["uid"] = postVO.userId!!
+            userMap["userFilePath"] = postVO.userFilePath!!
+            userMap["description"] = postVO.description!!
+            userMap["spot"] = postVO.spot!!
 
-            val imageRef = storageReference!!.child("images/" + UUID.randomUUID().toString())
-            imageRef.putFile(filePath!!)
-                .addOnSuccessListener {
-                    response = "PUBLICACION REALIZADA"
+            ref.child(postVO.userId!!).setValue(userMap).addOnCompleteListener{task ->
+                val message  = task.exception?.toString()
+                if(task.isSuccessful){
+                    userResponse = "Successful"
+                }else{
+                    userResponse ="$message"
                 }
-                .addOnFailureListener {
-                    response = "ALGO FALLO , POR FAVOR VUELVE  A INTENTARLO"
-                }
-                .addOnProgressListener { taskSnapshot ->
-                    val progress = 100.0 * taskSnapshot.bytesTransferred/taskSnapshot.totalByteCount
-                    response ="IMAGEN "+progress.toInt() + "% ..."
-                }
+            }
         }
 
     }

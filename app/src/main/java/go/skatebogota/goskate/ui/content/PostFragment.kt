@@ -1,25 +1,31 @@
-package go.skatebogota.goskate.ui.ui.content
+package go.skatebogota.goskate.ui.content
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.ClipDescription
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.ui.ui.viewmodels.ViewModelContent
+import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
 import kotlinx.android.synthetic.main.post.*
 
 class PostFragment : Fragment(){
 
-    private val viewModelContent: ViewModelContent by lazy { ViewModelContent.getViewModelContent(this)!! }
+    private lateinit var viewModelContent: ViewModelContent
     private var filePath: Uri? = null
     private var navController: NavController? = null
+     private var userImagePost: Uri?= null
+    lateinit var description: String
+    lateinit var userPlace: String
 
     companion object {
         private const val PICK_IMAGE_CODE = 1234
@@ -32,6 +38,7 @@ class PostFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         navController = Navigation.findNavController(view)
 
         btn_galery.setOnClickListener {
@@ -50,14 +57,14 @@ class PostFragment : Fragment(){
     }
 
     private fun uploadFile() {
-        if (filePath != null) {
-            viewModelContent.upLoadImagePost(filePath)
+        userImagePost = filePath
+        description = descriptionEditText.text.toString()
+        userPlace = placeEditText.text.toString()
+        if (userImagePost != null) {
+            viewModelContent.upLoadImagePost(userImagePost ,description , userPlace)
             val response = viewModelContent.getFirebaseResponseImagePost()
-            val progressDialog = ProgressDialog(this.context)
-            progressDialog.setTitle(response)
-            progressDialog.show()
-            progressDialog.dismiss()
-            navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+            if(response!="Successful") Toast.makeText(this.context,"$response",Toast.LENGTH_SHORT)
+                else navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
         }
     }
 

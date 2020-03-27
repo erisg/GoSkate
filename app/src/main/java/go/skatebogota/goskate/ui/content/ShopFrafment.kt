@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.ui.ui.content
+package go.skatebogota.goskate.ui.content
 
 import android.os.Bundle
 import android.view.LayoutInflater

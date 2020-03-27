@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.ui.ui.content
+package go.skatebogota.goskate.ui.content
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.firebase.auth.FirebaseAuth
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.ui.ui.auth.Login
+import go.skatebogota.goskate.ui.auth.Login
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkUserStatus(){
-
         if(auth.currentUser != null){
            //jklp
         }else{
