@@ -13,7 +13,7 @@
             android:id="@+id/action_homeFragment_to_postFragment2"
             app:destination="@id/postFragment2" />
     </fragment>
-    <activity
+    <fragment
         android:id="@+id/goSkateMap"
         android:name="go.skatebogota.goskate.ui.map.MapsGoSkate"
         android:label="maps_go_skate"

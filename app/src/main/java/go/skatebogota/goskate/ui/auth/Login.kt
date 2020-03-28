@@ -26,7 +26,8 @@ class Login : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         loginBtn.setOnClickListener {
-            validateInfoUser()
+           // validateInfoUser()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         noAccountTextView.setOnClickListener {

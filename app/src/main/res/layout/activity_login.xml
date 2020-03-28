@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/logoImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
             android:layout_marginTop="80dp"
             android:contentDescription="@string/email_login"
             app:layout_constraintBottom_toTopOf="@id/emailEditText"
@@ -59,49 +59,50 @@
             app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
 
-        <Button
-            android:id="@+id/googleButton"
-            android:layout_width="180dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+    <Button
+        android:id="@+id/googleButton"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/login_whit_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noAccountTextView" />
 
-        <TextView
-            android:id="@+id/login_whit_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="INGRESAR CON GOOGLE"
-            app:layout_constraintBottom_toTopOf="@id/loginBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/googleButton"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/login_whit_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="76dp"
+        android:text="INGRESAR CON GOOGLE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/googleButton"
+        app:layout_constraintStart_toStartOf="@+id/googleButton"
+        app:layout_constraintTop_toBottomOf="@+id/googleButton" />
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="163dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_whit_google" />
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="148dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
-        <TextView
-            android:id="@+id/noAccountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:text="@string/not_acount"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginBtn" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/noAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/not_acount"
+        app:layout_constraintEnd_toEndOf="@id/loginBtn"
+        app:layout_constraintStart_toStartOf="@id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

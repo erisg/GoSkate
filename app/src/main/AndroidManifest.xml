@@ -7,8 +7,8 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -36,7 +36,7 @@
 
         <activity
             android:name=".ui.map.MapsGoSkate"
-            android:label="@string/title_activity_maps_go_skate"></activity>
+            android:label="@string/title_activity_maps_go_skate" />
         <activity android:name=".ui.auth.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,11 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.ui.map.GoSkateMap"
-            android:label="@string/title_activity_go_skate_map" />
-        <activity android:name=".ui.content.MainActivity"></activity>
-        <activity android:name=".ui.auth.UserRegister"></activity>
+
+        <activity android:name=".ui.content.MainActivity" />
+        <activity android:name=".ui.auth.UserRegister" />
     </application>
 
 </manifest>
