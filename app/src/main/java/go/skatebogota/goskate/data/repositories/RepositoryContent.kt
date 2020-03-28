@@ -2,6 +2,7 @@ package go.skatebogota.goskate.data.repositories
 
 import android.app.Application
 import android.net.Uri
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -24,7 +25,7 @@ class RepositoryContent () {
 
     fun upLoadImagePost(postVO: PostVO){
         postVO.userId = auth.currentUser?.uid
-        val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPosts")
+        val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost" )
         if (postVO.userFilePath != null) {
             val userMap = HashMap<String , Any>()
             userMap["uid"] = postVO.userId!!
@@ -34,10 +35,13 @@ class RepositoryContent () {
 
             ref.child(postVO.userId!!).setValue(userMap).addOnCompleteListener{task ->
                 val message  = task.exception?.toString()
-                if(task.isSuccessful){
-                    userResponse = "Successful"
+                userResponse = if(task.isSuccessful){
+                    Log.e("post" , "yes")
+                    "Successful"
                 }else{
-                    userResponse ="$message"
+
+                    Log.e("post" , "$message")
+                    "$message"
                 }
             }
         }
