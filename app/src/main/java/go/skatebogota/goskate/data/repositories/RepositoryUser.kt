@@ -14,7 +14,7 @@ class RepositoryUser() {
     var response: String = ""
     var authListener : AuthListenerResponseUserRegister? = null
     private var authListenerInfoUser : AuthListenerResponseUserInfo? = null
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var userResponse :String = ""
 
     /**
@@ -56,6 +56,7 @@ class RepositoryUser() {
     }
 
     fun loginUser(userVO: UserVO) {
+
         auth.signInWithEmailAndPassword(userVO.userEmail!!, userVO.password!!).addOnCompleteListener {result->
             val message  = result.exception?.toString()
             if(result.isSuccessful){

@@ -11,6 +11,7 @@ class UserViewModel : ViewModel() {
     private val repositoryUser = RepositoryUser()
     var authListener : AuthListenerResponseUserRegister? = null
     var userVO:UserVO = UserVO()
+    var currentUser = repositoryUser.auth.currentUser
 
     //login data
 

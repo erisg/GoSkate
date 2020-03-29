@@ -14,6 +14,7 @@ class ViewModelContent : ViewModel() {
 
     private val repositoryContent = RepositoryContent()
     var postVO: PostVO = PostVO()
+    var currentUser = repositoryContent.auth
 
 
     fun upLoadImagePost(userImagePost: Uri? , description:String , userPlace:String) {

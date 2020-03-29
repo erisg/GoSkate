@@ -14,10 +14,10 @@ import java.util.*
 class RepositoryContent () {
 
     var userResponse : String = ""
-
+    var firebase: FirebaseAuth = FirebaseAuth.getInstance()
     private var storage: FirebaseStorage =  FirebaseStorage.getInstance()
     private var storageReference: StorageReference? = storage.reference
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     /**
      * Se sube a firebase foto del post

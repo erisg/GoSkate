@@ -24,6 +24,9 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        if(viewModel.currentUser!=null){
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
         loginBtn.setOnClickListener {
             validateInfoUser()
