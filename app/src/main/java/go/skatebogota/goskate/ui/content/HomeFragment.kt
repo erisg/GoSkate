@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -28,15 +30,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btn_post).setOnClickListener(this)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
-
-
-    }
-
-
-
-    private fun getDtaaPost() {
-        val images = viewModelContent.getImagePost()
-     //   recyclerPost.adapter = RecyclerPostAdapter(images)
     }
 
     override fun onClick(v: View?) {
