@@ -31,4 +31,8 @@
     <string name="logo_off">CERRAR SESION</string>
     <string name="notification">NOTIFICACIONES</string>
     <string name="title_activity_maps_go_skate">Map</string>
+    <string name="add_picture">AGREGAR FOTOS</string>
+    <string name="descriptions">DESCRIPCIONES</string>
+    <string name="add_value">AGREGAR PUNTUACION</string>
+    <string name="public_spot">PUBLICAR</string>
 </resources>

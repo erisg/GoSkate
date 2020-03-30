@@ -8,16 +8,21 @@ import androidx.navigation.ui.NavigationUI
 import com.google.firebase.auth.FirebaseAuth
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.auth.Login
+import go.skatebogota.goskate.util.interfaces.IMenuGone
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var iMenuGone: IMenuGone? = null
+        set(value) {
+            field = value
+            iMenuGone?.goneMenu(navGoSkate)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(navGoSkate, navController)
         checkUserStatus()
@@ -37,4 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun logoOut() {
         startActivity(Intent(this, Login::class.java))
     }
+
+
+
 }
