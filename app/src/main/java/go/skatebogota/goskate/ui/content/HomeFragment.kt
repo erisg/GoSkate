@@ -30,6 +30,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btn_post).setOnClickListener(this)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
+
+
     }
 
     override fun onClick(v: View?) {

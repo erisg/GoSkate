@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -28,7 +27,8 @@ class NewLocation : Fragment()  , GoogleMap.OnCameraIdleListener, GoogleMap.OnCa
     private lateinit var currentMarker: Marker
     private var IS_PAY_GEOCODE = false
     private lateinit var mLastLocation: LocationEntity
-    val locationInfo = Spot()
+    private val locationInfo = Spot()
+
 
     companion object {
         lateinit var menuGone: IMenuGone
@@ -48,13 +48,14 @@ class NewLocation : Fragment()  , GoogleMap.OnCameraIdleListener, GoogleMap.OnCa
             mMap = it
             it.setOnCameraIdleListener(this)
             it.setOnCameraMoveStartedListener(this)
-            it.setMinZoomPreference(18f)
+            it.setMinZoomPreference(16f)
             it.setMapStyle(MapStyleOptions.loadRawResourceStyle(context, R.raw.mapstyle))
-            var zoomLevel = 10.0f
             val sydney = LatLng(4.602275, -74.115726)
-            mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney , zoomLevel))
+            mMap.addMarker(MarkerOptions().position(sydney).draggable(true))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney ))
         }
+
+
     }
 
 

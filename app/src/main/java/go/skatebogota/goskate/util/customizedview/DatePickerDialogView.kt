@@ -23,7 +23,7 @@ class DatePickerDialogView : DialogFragment() {
     private val daysByMont = arrayOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
     private val monthsArray = arrayOf("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic")
     private lateinit var listener: OnDateSetListener
-    private val actualDate = Calendar.getInstance()!!
+    private val actualDate = Calendar.getInstance()
     private var windowTitle = "FECHA"
     var maxYear=2050
     var minYear=1900

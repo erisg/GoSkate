@@ -35,4 +35,5 @@
     <string name="descriptions">DESCRIPCIONES</string>
     <string name="add_value">AGREGAR PUNTUACION</string>
     <string name="public_spot">PUBLICAR</string>
+    <string name="address">DIRECCION</string>
 </resources>

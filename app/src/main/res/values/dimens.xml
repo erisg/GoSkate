@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="app_bar_margin_start_picture_logo">10dp</dimen>
     <dimen name="marginEditButttonsTable">2dp</dimen>
+    <dimen name="app_bar_margin_start_picture_logo">10dp</dimen>
+    <dimen name="margin_layout_30dp">30dp</dimen>
+    <dimen name="margin_layout_32dp">32dp</dimen>
+    <dimen name="margin_layout_45dp">45dp</dimen>
+    <dimen name="margin_layout_50dp">50dp</dimen>
+    <dimen name="margin_layout_52dp">52dp</dimen>
+    <dimen name="margin_layout_74dp">74dp</dimen>
+    <dimen name="margin_layout_80dp">80dp</dimen>
+    <dimen name="margin_layout_height_420dp">420dp</dimen>
+    <dimen name="margin_layout_290dp">290dp</dimen>
 </resources>

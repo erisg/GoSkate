@@ -24,6 +24,12 @@ class RepositoryContent () {
      */
 
     fun upLoadImagePost(postVO: PostVO){
+        val key = storage.reference.child("posts")
+        if (key == null) {
+            Log.w("TAG", "Couldn't get push key for posts")
+            return
+        }
+
         postVO.userId = auth.currentUser?.uid
         val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost" )
         if (postVO.userFilePath != null) {
