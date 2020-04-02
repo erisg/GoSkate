@@ -44,6 +44,7 @@ class RepositoryUser() {
         userMap["userEmail"] = userVO.userEmail!!
         userMap["userPassword"] = userVO.password!!
         userMap["ageUser"] = userVO.birthDate!!
+        userMap["sexUser"] = userVO.sex!!
 
         userRef.child(userVO.userId!!).setValue(userMap).addOnCompleteListener{task ->
             val message  = task.exception?.toString()

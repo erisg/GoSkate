@@ -14,11 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity()  {
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    var iMenuGone: IMenuGone? = null
-        set(value) {
-            field = value
-            iMenuGone?.goneMenu(navGoSkate)
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

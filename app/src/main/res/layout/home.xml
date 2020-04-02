@@ -6,18 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/homeToolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_toolbar"
-        app:title="@string/app_name" />
+        layout="@layout/head_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPost"
@@ -36,4 +27,5 @@
         android:background="@mipmap/cam_post"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerPost"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

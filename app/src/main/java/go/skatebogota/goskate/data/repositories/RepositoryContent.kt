@@ -1,7 +1,5 @@
 package go.skatebogota.goskate.data.repositories
 
-import android.app.Application
-import android.net.Uri
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -24,22 +22,15 @@ class RepositoryContent () {
      */
 
     fun upLoadImagePost(postVO: PostVO){
-        val key = storage.reference.child("posts")
-        if (key == null) {
-            Log.w("TAG", "Couldn't get push key for posts")
-            return
-        }
-
-        postVO.userId = auth.currentUser?.uid
         val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost" )
-        if (postVO.userFilePath != null) {
+        if (postVO.postFilePath != null) {
             val userMap = HashMap<String , Any>()
-            userMap["uid"] = postVO.userId!!
-            userMap["userFilePath"] = postVO.userFilePath!!
+            userMap["uid"] = postVO.postId!!
+            userMap["userFilePath"] = postVO.postFilePath!!
             userMap["description"] = postVO.description!!
             userMap["spot"] = postVO.spot!!
 
-            ref.child(postVO.userId!!).setValue(userMap).addOnCompleteListener{task ->
+            ref.child(postVO.postId!!).setValue(userMap).addOnCompleteListener { task ->
                 val message  = task.exception?.toString()
                 userResponse = if(task.isSuccessful){
                     Log.e("post" , "yes")
@@ -59,6 +50,8 @@ class RepositoryContent () {
      * Se trae de firebase la imagen del post
      */
 
-    fun getImagePost() =  storageReference!!.child("images/")
+    fun getImagePost() {
+
+    }
 
 }

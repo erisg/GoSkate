@@ -13,12 +13,15 @@ import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.auth.Login
+import go.skatebogota.goskate.ui.viewmodels.UserViewModel
 import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
+import kotlinx.android.synthetic.main.head_bar.*
 import kotlinx.android.synthetic.main.home.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
     private lateinit var viewModelContent: ViewModelContent
+    private lateinit var viewModel: UserViewModel
     private var navController: NavController? = null
 
     override fun onCreateView(
@@ -30,8 +33,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.btn_post).setOnClickListener(this)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
+        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
+        // BOTON DE DESLOGUEO
 
+        logoOutImageView.setOnClickListener {
+            if (viewModel.currentUser != null) {
+                viewModelContent.currentUser.signOut()
+                startActivity(Intent(this.context, Login::class.java))
+            }
+        }
     }
 
     override fun onClick(v: View?) {

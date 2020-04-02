@@ -40,11 +40,18 @@ class UserViewModel : ViewModel() {
      * SE GUARDA EL RESTO DE LA INFORMACION DEL PERFIL
      */
 
-    fun saveInfoUser(userName :String , userEmail :String , userPassword :String , ageUser :String){
+    fun saveInfoUser(
+        userName: String,
+        userEmail: String,
+        userPassword: String,
+        ageUser: String,
+        sexUser: String
+    ) {
         userVO.userName = userName
         userVO.userEmail = userEmail
         userVO.password = userPassword
         userVO.birthDate = ageUser
+        userVO.sex = sexUser
         repositoryUser.saveInfoUser(userVO)
     }
 }

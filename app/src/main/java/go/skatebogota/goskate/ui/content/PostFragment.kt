@@ -15,24 +15,27 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.data.models.PostVO
 import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
 import kotlinx.android.synthetic.main.post.*
 
-class PostFragment : Fragment(){
+class PostFragment : Fragment() {
 
     private lateinit var viewModelContent: ViewModelContent
     private var filePath: Uri? = null
     private var navController: NavController? = null
-     private var userImagePost: Uri?= null
+    private var userImagePost: Uri? = null
     lateinit var description: String
     lateinit var userPlace: String
+    lateinit var audioList: ArrayList<PostVO>
 
     companion object {
         private const val PICK_IMAGE_CODE = 1234
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.post, container, false)
     }
 
@@ -42,10 +45,12 @@ class PostFragment : Fragment(){
         navController = Navigation.findNavController(view)
 
         btn_galery.setOnClickListener {
-            fileChooser() }
+            fileChooser()
+        }
 
         btn_save_post.setOnClickListener {
-            uploadFile() }
+            uploadFile()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,10 +66,14 @@ class PostFragment : Fragment(){
         description = descriptionEditText.text.toString()
         userPlace = placeEditText.text.toString()
         if (userImagePost != null) {
-            viewModelContent.upLoadImagePost(userImagePost ,description , userPlace)
+            viewModelContent.upLoadImagePost(userImagePost, description, userPlace)
             val response = viewModelContent.getFirebaseResponseImagePost()
-            if(response!="Successful") Toast.makeText(this.context,"$response",Toast.LENGTH_SHORT)
-                else navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+            if (response != "Successful") Toast.makeText(
+                this.context,
+                "$response",
+                Toast.LENGTH_SHORT
+            )
+            else navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
         }
     }
 
@@ -76,5 +85,8 @@ class PostFragment : Fragment(){
             Intent.createChooser(intent, "SELECCIONA IMAGEN"),
             PICK_IMAGE_CODE
         )
+    }
+
+    fun getPostUser() {
     }
 }

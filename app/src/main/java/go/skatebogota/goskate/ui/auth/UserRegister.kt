@@ -32,7 +32,7 @@ class UserRegister : AppCompatActivity() {
     lateinit var userPassword: String
     lateinit var userPasswordTwo: String
     private lateinit var ageUser: String
-    var sexUser: Boolean? = null
+    lateinit var sexUser: String
     private var mAuth = FirebaseAuth.getInstance();
     lateinit var response: String
     private var maximumAge = 0
@@ -71,6 +71,9 @@ class UserRegister : AppCompatActivity() {
         userEmail = emallEditTextR.text.toString()
         userPassword = passwordEditTextR.text.toString()
         userPasswordTwo = passwordTwoEditText.text.toString()
+        if (radioMen.isChecked) sexUser =
+            SexUser.MEN.valueData else if (radioWomen.isChecked) sexUser = SexUser.WOMEN.valueData
+        sexUser
         ageUser = AgeTextView.text.toString()
 
         when {
@@ -91,6 +94,7 @@ class UserRegister : AppCompatActivity() {
                 "POR FAVOR INGRESAR LA FECHA DE NACIMIENTO"
             )
 
+
             else -> {
                 viewModel.registerUser(userEmail, userPasswordTwo)
                 saveInfoUser()
@@ -108,7 +112,7 @@ class UserRegister : AppCompatActivity() {
     private fun saveInfoUser() {
         val firebaseResponse = viewModel.getUserRegisterResponse()
         if(firebaseResponse == "Successful") {
-            viewModel.saveInfoUser(userName,userEmail,userPassword,ageUser)
+            viewModel.saveInfoUser(userName, userEmail, userPassword, ageUser, sexUser)
             startActivity(Intent(this, MainActivity::class.java))
         }else{
             Toast.makeText(this, firebaseResponse,Toast.LENGTH_SHORT)
@@ -147,5 +151,10 @@ class UserRegister : AppCompatActivity() {
         override fun onStart() {
             super.onStart()
         }
+
+    enum class SexUser(var valueData: String) {
+        WOMEN("F"),
+        MEN("M")
+    }
 
     }

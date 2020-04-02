@@ -12,4 +12,5 @@
     <dimen name="margin_layout_80dp">80dp</dimen>
     <dimen name="margin_layout_height_420dp">420dp</dimen>
     <dimen name="margin_layout_290dp">290dp</dimen>
+    <dimen name="margin_layout_65dp">65dp</dimen>
 </resources>
