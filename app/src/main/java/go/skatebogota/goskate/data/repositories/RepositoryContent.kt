@@ -26,7 +26,6 @@ class RepositoryContent () {
         if (postVO.postFilePath != null) {
             val userMap = HashMap<String , Any>()
             userMap["uid"] = postVO.postId!!
-            userMap["userFilePath"] = postVO.postFilePath!!
             userMap["description"] = postVO.description!!
             userMap["spot"] = postVO.spot!!
 

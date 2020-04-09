@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:cardCornerRadius="20dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/blueDark"
+    app:cardCornerRadius="20dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +18,14 @@
             android:id="@+id/img_user"
             android:layout_width="94dp"
             android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_weight="1"
+            android:background="@drawable/post"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_crop" />
+            app:layout_constraintVertical_bias="0.529" />
 
         <LinearLayout
             android:layout_width="292dp"
@@ -37,15 +41,13 @@
                 android:id="@+id/placeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:gravity="center"
-                android:text="nombrekyugkugbk" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:gravity="center"
-                android:text="hytfgkjuyhjloi" />
+                android:gravity="center" />
 
         </LinearLayout>
 

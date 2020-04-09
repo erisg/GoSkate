@@ -1,5 +1,6 @@
 package go.skatebogota.goskate.util.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import go.skatebogota.goskate.R
 import kotlinx.android.synthetic.main.item_post.view.*
 
-class RecyclerPostAdapter(var post:List<String>) : RecyclerView.Adapter<RecyclerPostAdapter.ViewHolder>() {
+class RecyclerPostAdapter(var post: List<String>) :
+    RecyclerView.Adapter<RecyclerPostAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
@@ -19,9 +21,6 @@ class RecyclerPostAdapter(var post:List<String>) : RecyclerView.Adapter<Recycler
          val userName = view.placeEditText
          val userEmail = view.description
 
-       fun bind(audio:List<String>) {
-       }
-    }
 
 
 
