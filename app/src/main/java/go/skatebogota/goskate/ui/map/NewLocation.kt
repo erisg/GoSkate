@@ -34,7 +34,6 @@ class NewLocation : Fragment(), GoogleMap.OnCameraIdleListener,
     private lateinit var currentMarker: Marker
     private var IS_PAY_GEOCODE = false
     private lateinit var mLastLocation: LocationEntity
-    private val locationInfo = Spot()
 
 
     companion object {
@@ -80,33 +79,12 @@ class NewLocation : Fragment(), GoogleMap.OnCameraIdleListener,
     }
 
     private fun processGeocodeResponse(geocodeResponse: GeocodeResponse) {
-        if (geocodeResponse.status == "OK") {
-            val geoLocationInfo: Spot = geocodeResponse.formatToGeoLocationInfo(
-                mLastLocation,
-                mMap.cameraPosition.target.toLocation(), 0
-            )
 
-        } else {
-
-        }
     }
 
 
     override fun onCameraIdle() {
-        user_location.animate().translationY(0F)
-        val locationInfo = Spot()
 
-        if (!IS_PAY_GEOCODE) {
-            //  startIntentService(mMap.cameraPosition.target.toLocation())
-        } else {
-            locationInfo.latitude = mMap.cameraPosition.target.latitude
-            locationInfo.longitude = mMap.cameraPosition.target.longitude
-            locationInfo.latitudeInit = mLastLocation.latitude
-            locationInfo.longitudeInit = mLastLocation.longitude
-            currentMarker.position =
-                LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
-            // onMapGeocoderView.onProcessGeocodeResponse(locationInfo, userMoveMap)
-        }
     }
     var userMoveMap = false
 

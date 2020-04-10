@@ -36,4 +36,7 @@
     <string name="add_value">AGREGAR PUNTUACION</string>
     <string name="public_spot">PUBLICAR</string>
     <string name="address">DIRECCION</string>
+    <string name="timetable">HORARIOS</string>
+
+
 </resources>

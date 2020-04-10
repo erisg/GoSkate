@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.data.models.Spot
 import kotlinx.android.synthetic.main.maps_go_skate.*
 
 
@@ -48,6 +49,7 @@ class MapsGoSkate : Fragment() , OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
 
+
         try {
             val success = mMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(this.context,R.raw.mapstyle)
@@ -59,11 +61,27 @@ class MapsGoSkate : Fragment() , OnMapReadyCallback{
             Log.e("oo", "Can't find style. Error: ", e)
         }
 
+        val spots = mutableListOf<Spot>()
 
-        var zoomLevel = 10.0f
-        val sydney = LatLng(4.602275, -74.115726)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney , zoomLevel))
+        spots.add(
+            Spot(
+                latitude = 4.756754,
+                longitude = -74.110558,
+                spotTittle = "FONTANAR DEL RIO"
+            )
+        )
+        spots.add(Spot(latitude = 4.622893, longitude = -74.172965, spotTittle = "LAS MARGARITAS"))
+        spots.add(Spot(latitude = 4.571505, longitude = -74.136245, spotTittle = "TUNAL"))
+        spots.add(Spot(latitude = 4.597686, longitude = -74.081089, spotTittle = "TERCER MILENIO"))
+
+        spots.forEach {
+            val place = LatLng(it.latitude, it.longitude)
+            var zoomLevel = 11.1f
+            mMap.addMarker(MarkerOptions().position(place).title(it.spotTittle))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
+        }
+
+
 
     }
 

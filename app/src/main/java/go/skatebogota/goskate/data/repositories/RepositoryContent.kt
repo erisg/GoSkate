@@ -22,14 +22,13 @@ class RepositoryContent () {
      */
 
     fun upLoadImagePost(postVO: PostVO){
+        val userId = auth.currentUser
         val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost" )
-        if (postVO.postFilePath != null) {
             val userMap = HashMap<String , Any>()
-            userMap["uid"] = postVO.postId!!
             userMap["description"] = postVO.description!!
             userMap["spot"] = postVO.spot!!
 
-            ref.child(postVO.postId!!).setValue(userMap).addOnCompleteListener { task ->
+        ref.child(userId.toString()).setValue(userMap).addOnCompleteListener { task ->
                 val message  = task.exception?.toString()
                 userResponse = if(task.isSuccessful){
                     Log.e("post" , "yes")
@@ -40,7 +39,6 @@ class RepositoryContent () {
                     "$message"
                 }
             }
-        }
 
     }
 
