@@ -6,28 +6,38 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.data.models.Spot
 import kotlinx.android.synthetic.main.maps_go_skate.*
 
 
-class MapsGoSkate : Fragment() , OnMapReadyCallback{
+class MapsGoSkate : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
     private var mapView: MapView? = null
     private var navController: NavController? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.maps_go_skate, container, false)
     }
 
@@ -35,24 +45,25 @@ class MapsGoSkate : Fragment() , OnMapReadyCallback{
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+
         // SE CARGA MAPA
         mapView = view.findViewById(R.id.mapView) as MapView
         mapView!!.onCreate(savedInstanceState)
         mapView!!.onResume()
         mapView!!.getMapAsync(this)
-
         newPostFloatingActionButton.setOnClickListener {
             navController!!.navigate(R.id.action_goSkateMap_to_newLocation)
         }
+
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
-
+        mMap.setOnMarkerClickListener(this)
 
         try {
             val success = mMap.setMapStyle(
-                MapStyleOptions.loadRawResourceStyle(this.context,R.raw.mapstyle)
+                MapStyleOptions.loadRawResourceStyle(this.context, R.raw.mapstyle)
             )
             if (!success) {
                 Log.e("oo", "Style parsing failed.")
@@ -82,8 +93,17 @@ class MapsGoSkate : Fragment() , OnMapReadyCallback{
         }
 
 
-
     }
 
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        if (marker?.title != null) {
+            val dialog = BottomSheetDialog(this.context!!)
+            val view = layoutInflater.inflate(R.layout.info_spot, null)
+            dialog.setContentView(view)
+            dialog.show()
+        }
+
+        return false
+    }
 
 }

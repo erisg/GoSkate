@@ -1,8 +1,6 @@
 package go.skatebogota.goskate.ui.content
 
 import android.app.Activity
-import android.app.ProgressDialog
-import android.content.ClipDescription
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -28,6 +26,8 @@ class PostFragment : Fragment() {
     lateinit var description: String
     lateinit var userPlace: String
     lateinit var audioList: ArrayList<PostVO>
+    val VIDEO: Int = 3
+    lateinit var uri: Uri
 
     companion object {
         private const val PICK_IMAGE_CODE = 1234
@@ -44,8 +44,12 @@ class PostFragment : Fragment() {
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         navController = Navigation.findNavController(view)
 
-        btn_galery.setOnClickListener {
-            fileChooser()
+        videoImageView.setOnClickListener {
+
+        }
+
+        galeryImageView.setOnClickListener {
+            imageFileChooser()
         }
 
         btn_save_post.setOnClickListener {
@@ -58,7 +62,11 @@ class PostFragment : Fragment() {
         if (requestCode == PICK_IMAGE_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             filePath = data.data
             imagePost.setImageURI(filePath)
-        }
+        } else
+            if (requestCode == VIDEO && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                uri = data.data!!
+
+            }
     }
 
     private fun uploadFile() {
@@ -77,7 +85,17 @@ class PostFragment : Fragment() {
         }
     }
 
-    private fun fileChooser() {
+    private fun videoFileChooser() {
+        val intent = Intent()
+        intent.type = "video/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(intent, "SELECCIONE VIDEO"),
+            VIDEO
+        )
+    }
+
+    private fun imageFileChooser() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT

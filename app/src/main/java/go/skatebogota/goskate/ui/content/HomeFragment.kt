@@ -66,21 +66,21 @@ class HomeFragment : Fragment(), View.OnClickListener {
         dumlist.add(
             PostVO(
                 imagePost = "gs://goskate-c06a4.appspot.com/litlegirl.jpg",
-                description = "EL MAS GRANDE DEL SUR",
+                description = "783",
                 spot = "TERCER MILENIO"
             )
         )
         dumlist.add(
             PostVO(
                 imagePost = "gs://goskate-c06a4.appspot.com/image.jfif",
-                description = "ES MUY BONITO Y VACIO",
+                description = "56",
                 spot = "SKATEPARK LAS MARGARITAS"
             )
         )
         dumlist.add(
             PostVO(
                 imagePost = "gs://goskate-c06a4.appspot.com/girl3.jpg",
-                description = "TIENE EL BOWL MAS GRANDE",
+                description = "1.235",
                 spot = "SKATEPARK FONTANAR"
             )
         )

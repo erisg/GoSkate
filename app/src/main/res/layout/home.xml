@@ -25,7 +25,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@mipmap/cam_post"
+        android:background="@drawable/cam"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerPost"
         app:layout_constraintEnd_toEndOf="parent" />
 

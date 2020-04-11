@@ -9,11 +9,11 @@ import com.google.firebase.storage.StorageReference
 import go.skatebogota.goskate.data.models.PostVO
 import java.util.*
 
-class RepositoryContent () {
+class RepositoryContent() {
 
-    var userResponse : String = ""
+    var userResponse: String = ""
     var firebase: FirebaseAuth = FirebaseAuth.getInstance()
-    private var storage: FirebaseStorage =  FirebaseStorage.getInstance()
+    private var storage: FirebaseStorage = FirebaseStorage.getInstance()
     private var storageReference: StorageReference? = storage.reference
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -21,24 +21,25 @@ class RepositoryContent () {
      * Se sube a firebase foto del post
      */
 
-    fun upLoadImagePost(postVO: PostVO){
+    fun upLoadImagePost(postVO: PostVO) {
         val userId = auth.currentUser
-        val ref :  DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost" )
-            val userMap = HashMap<String , Any>()
-            userMap["description"] = postVO.description!!
-            userMap["spot"] = postVO.spot!!
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost")
+        val userMap = HashMap<String, Any>()
+        userMap["description"] = postVO.description!!
+        userMap["description"] = postVO.description!!
+        userMap["spot"] = postVO.spot!!
 
         ref.child(userId.toString()).setValue(userMap).addOnCompleteListener { task ->
-                val message  = task.exception?.toString()
-                userResponse = if(task.isSuccessful){
-                    Log.e("post" , "yes")
-                    "Successful"
-                }else{
+            val message = task.exception?.toString()
+            userResponse = if (task.isSuccessful) {
+                Log.e("post", "yes")
+                "Successful"
+            } else {
 
-                    Log.e("post" , "$message")
-                    "$message"
-                }
+                Log.e("post", "$message")
+                "$message"
             }
+        }
 
     }
 
