@@ -22,22 +22,30 @@ class RepositoryContent() {
      */
 
     fun upLoadImagePost(postVO: PostVO) {
-        val userId = auth.currentUser
-        val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost")
-        val userMap = HashMap<String, Any>()
-        userMap["description"] = postVO.description!!
-        userMap["description"] = postVO.description!!
-        userMap["spot"] = postVO.spot!!
+        val id = auth.currentUser?.uid
+        val refDataBse: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("UsersPost")
+        val refStorage = storage.getReference("images")
 
-        ref.child(userId.toString()).setValue(userMap).addOnCompleteListener { task ->
-            val message = task.exception?.toString()
-            userResponse = if (task.isSuccessful) {
-                Log.e("post", "yes")
-                "Successful"
-            } else {
+        refStorage.putFile(postVO.imagePost!!).addOnSuccessListener {
+            refStorage.downloadUrl.addOnSuccessListener {
+                val userMap = HashMap<String, Any>()
+                userMap["id"] = id!!
+                userMap["description"] = postVO.description!!
+                userMap["spot"] = postVO.spot!!
+                userMap["imagePost"] = it.toString()
 
-                Log.e("post", "$message")
-                "$message"
+                refDataBse.child(id).setValue(userMap).addOnCompleteListener { task ->
+                    val message = task.exception?.toString()
+                    userResponse = if (task.isSuccessful) {
+                        Log.e("post", "yes")
+                        "Successful"
+                    } else {
+
+                        Log.e("post", "$message")
+                        "$message"
+                    }
+                }
             }
         }
 
@@ -48,8 +56,6 @@ class RepositoryContent() {
      * Se trae de firebase la imagen del post
      */
 
-    fun getImagePost() {
 
-    }
 
 }

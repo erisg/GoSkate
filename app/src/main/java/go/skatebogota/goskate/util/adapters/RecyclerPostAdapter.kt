@@ -19,6 +19,7 @@ class RecyclerPostAdapter(private val context: Context) :
     fun setListData(data: MutableList<PostVO>) {
         dataList = data
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(
         LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
     )
@@ -32,10 +33,7 @@ class RecyclerPostAdapter(private val context: Context) :
         var descriptionPost = view.description
 
         fun bindView(postVO: PostVO) {
-            Glide.with(context)
-                .load(File(postVO.imagePost))
-                .skipMemoryCache(true)//Borrar cache
-                .into(imageView)
+            imageView.setImageURI(postVO.imagePost)
             postName.text = postVO.spot
             descriptionPost.text = postVO.description
         }

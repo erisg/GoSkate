@@ -63,27 +63,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
         recyclerPost.adapter = adapter
 
         val dumlist = mutableListOf<PostVO>()
-        dumlist.add(
-            PostVO(
-                imagePost = "gs://goskate-c06a4.appspot.com/litlegirl.jpg",
-                description = "783",
-                spot = "TERCER MILENIO"
-            )
-        )
-        dumlist.add(
-            PostVO(
-                imagePost = "gs://goskate-c06a4.appspot.com/image.jfif",
-                description = "56",
-                spot = "SKATEPARK LAS MARGARITAS"
-            )
-        )
-        dumlist.add(
-            PostVO(
-                imagePost = "gs://goskate-c06a4.appspot.com/girl3.jpg",
-                description = "1.235",
-                spot = "SKATEPARK FONTANAR"
-            )
-        )
 
         adapter.setListData(dumlist)
         adapter.notifyDataSetChanged()

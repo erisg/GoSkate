@@ -76,12 +76,11 @@ class PostFragment : Fragment() {
         if (userImagePost != null) {
             viewModelContent.upLoadImagePost(userImagePost, description, userPlace)
             val response = viewModelContent.getFirebaseResponseImagePost()
-            if (response != "Successful") Toast.makeText(
-                this.context,
-                "$response",
-                Toast.LENGTH_SHORT
-            )
-            else navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+            if (response != "Successful") {
+                Toast.makeText(this.context, "$response", Toast.LENGTH_SHORT)
+            } else {
+                navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+            }
         }
     }
 
@@ -90,8 +89,7 @@ class PostFragment : Fragment() {
         intent.type = "video/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
-            Intent.createChooser(intent, "SELECCIONE VIDEO"),
-            VIDEO
+            Intent.createChooser(intent, "SELECCIONE VIDEO"), VIDEO
         )
     }
 
