@@ -1,6 +1,7 @@
 package go.skatebogota.goskate.ui.viewmodels
 
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.data.repositories.RepositoryUser
@@ -19,9 +20,20 @@ class UserViewModel : ViewModel() {
     var password:String? = null
 
 
-    fun registerUser(email: String, password: String) {
-        userVO.userEmail = email
-        userVO.password = password
+    fun registerUser(
+        imageProfile: Uri?,
+        userName: String,
+        userEmail: String,
+        userPassword: String,
+        ageUser: String,
+        sexUser: String
+    ) {
+        userVO.imageProfile = imageProfile
+        userVO.userName = userName
+        userVO.userEmail = userEmail
+        userVO.password = userPassword
+        userVO.birthDate = ageUser
+        userVO.sex = sexUser
         repositoryUser.registerUser(userVO)
     }
 
@@ -41,12 +53,14 @@ class UserViewModel : ViewModel() {
      */
 
     fun saveInfoUser(
+        imageProfile: Uri?,
         userName: String,
         userEmail: String,
         userPassword: String,
         ageUser: String,
         sexUser: String
     ) {
+        userVO.imageProfile
         userVO.userName = userName
         userVO.userEmail = userEmail
         userVO.password = userPassword

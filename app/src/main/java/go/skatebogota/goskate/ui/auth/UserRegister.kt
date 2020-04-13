@@ -1,13 +1,21 @@
+@file:Suppress("DEPRECATION")
+
 package go.skatebogota.goskate.ui.auth
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.getBitmap
 import android.text.TextUtils
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -40,6 +48,7 @@ class UserRegister : AppCompatActivity() {
     private var minimumAge = 0
     private lateinit var viewModel: UserViewModel
     private lateinit var progressDialog: ProgressDialog
+    var uri: Uri? = null
     var authListener: AuthListenerResponseUserRegister? = null
     var authListenerUserInfo: AuthListenerResponseUserInfo? = null
 
@@ -58,6 +67,28 @@ class UserRegister : AppCompatActivity() {
         btn_sign_up.setOnClickListener {
             validaInfoNewUser()
         }
+
+        imageProfileButton.setOnClickListener {
+            selectImageProfile()
+        }
+    }
+
+    private fun selectImageProfile() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, 0)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            uri = data.data
+            selet_photo.visibility = View.GONE
+            imageProfileButton.setImageURI(uri)
+
+        }
     }
 
     /**
@@ -65,6 +96,7 @@ class UserRegister : AppCompatActivity() {
      * * VALIDA SI LA INFORMACION ESTA COMPLETA Y BIEN DILIGENCIADA
      */
 
+    @SuppressLint("ShowToast")
     private fun validaInfoNewUser() {
 
         userName = nameEditText.text.toString()
@@ -77,6 +109,9 @@ class UserRegister : AppCompatActivity() {
         ageUser = AgeTextView.text.toString()
 
         when {
+            uri == null -> {
+                Toast.makeText(this, "POR FAVOR ELIGE UNA FOTO DE PERFIL", Toast.LENGTH_LONG)
+            }
             TextUtils.isEmpty(userName) -> validateEditText(
                 nameEditText,
                 "POR FAVOR INGRESAR NOMBRE DE USUARIO"
@@ -96,7 +131,7 @@ class UserRegister : AppCompatActivity() {
 
 
             else -> {
-                viewModel.registerUser(userEmail, userPasswordTwo)
+                viewModel.registerUser(uri, userName, userEmail, userPasswordTwo, ageUser, sexUser)
                 saveInfoUser()
             }
         }
@@ -112,49 +147,48 @@ class UserRegister : AppCompatActivity() {
     private fun saveInfoUser() {
         val firebaseResponse = viewModel.getUserRegisterResponse()
         if(firebaseResponse == "Successful") {
-            viewModel.saveInfoUser(userName, userEmail, userPassword, ageUser, sexUser)
             startActivity(Intent(this, MainActivity::class.java))
         }else{
             Toast.makeText(this, firebaseResponse,Toast.LENGTH_SHORT)
         }
     }
 
-        /**
-         * Funcion que se encarga de mostrar el datepicker para capturar la fecha de nacimiento
-         */
+    /**
+     * Funcion que se encarga de mostrar el datepicker para capturar la fecha de nacimiento
+     */
 
-        @RequiresApi(Build.VERSION_CODES.N)
-        @SuppressLint("SetTextI18n")
-        private fun dateOfBirth() {
-            val myCalendar = Calendar.getInstance()
-            val dateCustom =
-                DatePickerDialogView()
-            dateCustom.setListener(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                myCalendar.set(Calendar.YEAR, year)
-                myCalendar.set(Calendar.MONTH, monthOfYear)
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                AgeTextView.text = SimpleDateFormat("dd/MM/yyyy").format(myCalendar.time)
-            }, "FECHA")
-            dateCustom.setDate(AgeTextView.text.toString())
-            dateCustom.minYear = 1970
-            dateCustom.maxYear = when (validationType) {
-                1 -> myCalendar.get(Calendar.YEAR) - (minimumAge / 365)
-                2 -> myCalendar.get(Calendar.YEAR)
-                3 -> myCalendar.get(Calendar.YEAR) + (maximumAge / 365) + 1
-                else -> dateCustom.maxYear
-            }
-
-            dateCustom.show((this as AppCompatActivity).supportFragmentManager, "Date")
+    @RequiresApi(Build.VERSION_CODES.N)
+    @SuppressLint("SetTextI18n")
+    private fun dateOfBirth() {
+        val myCalendar = Calendar.getInstance()
+        val dateCustom =
+            DatePickerDialogView()
+        dateCustom.setListener(DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, monthOfYear)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            AgeTextView.text = SimpleDateFormat("dd/MM/yyyy").format(myCalendar.time)
+        }, "FECHA")
+        dateCustom.setDate(AgeTextView.text.toString())
+        dateCustom.minYear = 1970
+        dateCustom.maxYear = when (validationType) {
+            1 -> myCalendar.get(Calendar.YEAR) - (minimumAge / 365)
+            2 -> myCalendar.get(Calendar.YEAR)
+            3 -> myCalendar.get(Calendar.YEAR) + (maximumAge / 365) + 1
+            else -> dateCustom.maxYear
         }
 
+        dateCustom.show((this as AppCompatActivity).supportFragmentManager, "Date")
+    }
 
-        override fun onStart() {
-            super.onStart()
-        }
+
+    override fun onStart() {
+        super.onStart()
+    }
 
     enum class SexUser(var valueData: String) {
         WOMEN("F"),
         MEN("M")
     }
 
-    }
+}

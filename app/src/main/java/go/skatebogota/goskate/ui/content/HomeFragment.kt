@@ -58,7 +58,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    fun getAllUserPost() {
+    private fun getAllUserPost() {
+        recyclerPost.setHasFixedSize(true)
         recyclerPost.layoutManager = LinearLayoutManager(this.context!!)
         recyclerPost.adapter = adapter
 

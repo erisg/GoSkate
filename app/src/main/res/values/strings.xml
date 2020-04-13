@@ -37,6 +37,10 @@
     <string name="public_spot">PUBLICAR</string>
     <string name="address">DIRECCION</string>
     <string name="timetable">HORARIOS</string>
+    <string name="add_place_ubication">AGREGAR UBICACION</string>
+    <string name="add_description">AGREGA DESCRIPCION</string>
+    <string name="likes">Me gusta</string>
+    <string name="photo_profile">Selecciona una foto de perfil</string>
 
 
 </resources>

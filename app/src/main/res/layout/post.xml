@@ -12,23 +12,24 @@
         android:id="@+id/descriptionEditText"
         android:layout_width="321dp"
         android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
-        android:hint="NOMBRE RAIDER"
+        android:hint="@string/add_place_ubication"
         android:textColorHint="#150101"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imagePost"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="356dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="18dp"
-        android:background="@drawable/ic_action_name"
         app:layout_constraintBottom_toTopOf="@+id/placeEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
 
@@ -37,7 +38,7 @@
         android:layout_width="327dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
-        android:hint="PLACE"
+        android:hint="@string/add_description"
         android:textColorHint="#2B0202"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
@@ -83,5 +84,21 @@
         app:layout_constraintEnd_toEndOf="@+id/videoImageView"
         app:layout_constraintStart_toStartOf="@+id/galeryImageView"
         app:layout_constraintTop_toBottomOf="@+id/galeryImageView" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="64dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/imagePost"
+        app:layout_constraintEnd_toStartOf="@+id/descriptionEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logolin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
