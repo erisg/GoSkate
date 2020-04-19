@@ -44,6 +44,11 @@
         tools:layout="@layout/new_location">
 
     </fragment>
+    <fragment
+        android:id="@+id/notifyFragment"
+        android:name="go.skatebogota.goskate.ui.content.NotifyFragment"
+        android:label="NotifyFragment"
+        tools:layout="@layout/notification"/>
 
 
 </navigation>

@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_action_map" />
 
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/notifyFragment"
         android:icon="@drawable/ic_action_notification"
         android:title="@string/notification" />
 

@@ -44,6 +44,8 @@ class PostFragment : Fragment() {
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         navController = Navigation.findNavController(view)
 
+
+
         videoImageView.setOnClickListener {
 
         }
@@ -103,6 +105,5 @@ class PostFragment : Fragment() {
         )
     }
 
-    fun getPostUser() {
-    }
+
 }

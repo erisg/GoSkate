@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -39,6 +40,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         adapter = RecyclerPostAdapter(this.context!!)
+        recyclerPost.setHasFixedSize(true)
+        recyclerPost.layoutManager = LinearLayoutManager(this.context!!)
+        recyclerPost.adapter = adapter
         getAllUserPost()
 
 
@@ -59,15 +63,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun getAllUserPost() {
-        recyclerPost.setHasFixedSize(true)
-        recyclerPost.layoutManager = LinearLayoutManager(this.context!!)
-        recyclerPost.adapter = adapter
-
-        val dumlist = mutableListOf<PostVO>()
-
-        adapter.setListData(dumlist)
-        adapter.notifyDataSetChanged()
+        viewModelContent.getInfoPost().observe(viewLifecycleOwner, Observer {
+            adapter.setListData(it)
+            adapter.notifyDataSetChanged()
+        })
     }
-
-
 }

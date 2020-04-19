@@ -45,27 +45,5 @@ class UserViewModel : ViewModel() {
         repositoryUser.loginUser(userVO)
     }
 
-    fun getUserLoginResponse() = repositoryUser.response
 
-
-    /**
-     * SE GUARDA EL RESTO DE LA INFORMACION DEL PERFIL
-     */
-
-    fun saveInfoUser(
-        imageProfile: Uri?,
-        userName: String,
-        userEmail: String,
-        userPassword: String,
-        ageUser: String,
-        sexUser: String
-    ) {
-        userVO.imageProfile
-        userVO.userName = userName
-        userVO.userEmail = userEmail
-        userVO.password = userPassword
-        userVO.birthDate = ageUser
-        userVO.sex = sexUser
-        repositoryUser.saveInfoUser(userVO)
-    }
 }

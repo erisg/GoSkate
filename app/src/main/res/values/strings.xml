@@ -41,6 +41,8 @@
     <string name="add_description">AGREGA DESCRIPCION</string>
     <string name="likes">Me gusta</string>
     <string name="photo_profile">Selecciona una foto de perfil</string>
+    <string name="notifiy">NOTIFICACIONES</string>
+    <string name="message">MENSAJES</string>
 
 
 </resources>

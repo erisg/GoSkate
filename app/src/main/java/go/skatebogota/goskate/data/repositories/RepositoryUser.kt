@@ -9,6 +9,8 @@ import com.google.firebase.storage.FirebaseStorage
 import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserInfo
 import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserRegister
+import java.util.*
+import kotlin.collections.HashMap
 
 class RepositoryUser() {
 
@@ -27,7 +29,7 @@ class RepositoryUser() {
                 userVO.userId = auth.currentUser!!.uid
                 val userRef: DatabaseReference =
                     FirebaseDatabase.getInstance().reference.child("Users")
-                val refStorage = storage.getReference("imagesProfile")
+                val refStorage = storage.getReference("imagesProfile/" + UUID.randomUUID().toString())
                 refStorage.putFile(userVO.imageProfile!!).addOnSuccessListener {
                     refStorage.downloadUrl.addOnSuccessListener {
                         val userMap = HashMap<String, Any>()
