@@ -1,4 +1,4 @@
-package go.skatebogota.goskate.ui.content
+package go.skatebogota.goskate.ui.content.notifications
 
 import android.os.Bundle
 import android.view.*
@@ -7,7 +7,7 @@ import go.skatebogota.goskate.R
 import go.skatebogota.goskate.util.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.notification.*
 
-class NotifyFragment: Fragment() {
+class NotificationContainerFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -23,4 +23,10 @@ class NotifyFragment: Fragment() {
     }
 
 
+    override fun onStart() {
+        val fragmentAdapter = ViewPagerAdapter(fragmentManager!!)
+        viewPager.adapter = fragmentAdapter
+        tabLayout.setupWithViewPager(viewPager)
+        super.onStart()
+    }
 }

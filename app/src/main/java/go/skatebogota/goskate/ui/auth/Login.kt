@@ -29,8 +29,8 @@ class Login : AppCompatActivity() {
         }
 
         loginBtn.setOnClickListener {
-            validateInfoUser()
-           /// startActivity(Intent(this, MainActivity::class.java))
+           // validateInfoUser()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         noAccountTextView.setOnClickListener {

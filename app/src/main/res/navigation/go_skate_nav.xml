@@ -46,9 +46,23 @@
     </fragment>
     <fragment
         android:id="@+id/notifyFragment"
-        android:name="go.skatebogota.goskate.ui.content.NotifyFragment"
+        android:name="go.skatebogota.goskate.ui.content.notifications.NotificationContainerFragment"
         android:label="NotifyFragment"
         tools:layout="@layout/notification"/>
+    <fragment
+        android:id="@+id/allMessageFragment"
+        android:name="go.skatebogota.goskate.ui.content.notifications.AllMessageFragment"
+        android:label="MessageChatFragment"
+        tools:layout="@layout/message_fragment">
+        <action
+            android:id="@+id/action_allMessageFragment_to_searchNewMessage"
+            app:destination="@id/searchNewMessage" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchNewMessage"
+        android:name="go.skatebogota.goskate.ui.content.notifications.SearchNewMessage"
+        android:label="SearchNewMessage"
+        tools:layout="@layout/search_new_message"/>
 
 
 </navigation>

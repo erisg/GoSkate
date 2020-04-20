@@ -132,7 +132,6 @@ class UserRegister : AppCompatActivity() {
 
             else -> {
                 viewModel.registerUser(uri, userName, userEmail, userPasswordTwo, ageUser, sexUser)
-                saveInfoUser()
             }
         }
 

@@ -3,8 +3,8 @@ package go.skatebogota.goskate.util.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import go.skatebogota.goskate.ui.content.MessageFragment
-import go.skatebogota.goskate.ui.content.NotificationFragment
+import go.skatebogota.goskate.ui.content.notifications.AllMessageFragment
+import go.skatebogota.goskate.ui.content.notifications.NotificationFragment
 
 class ViewPagerAdapter(fragment: FragmentManager) : FragmentPagerAdapter(fragment) {
 
@@ -14,7 +14,7 @@ class ViewPagerAdapter(fragment: FragmentManager) : FragmentPagerAdapter(fragmen
                 NotificationFragment()
             }
             else -> {
-                MessageFragment()
+                AllMessageFragment()
             }
         }
     }

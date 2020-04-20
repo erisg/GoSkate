@@ -47,6 +47,7 @@
 
         <activity android:name=".ui.content.MainActivity" />
         <activity android:name=".ui.auth.UserRegister" />
+
     </application>
 
 </manifest>

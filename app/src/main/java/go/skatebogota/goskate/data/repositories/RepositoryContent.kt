@@ -1,10 +1,16 @@
 package go.skatebogota.goskate.data.repositories
 
+import android.os.Build
+import android.provider.Settings.Global.getString
 import android.util.Log
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import go.skatebogota.goskate.data.models.PostVO
@@ -49,9 +55,7 @@ class RepositoryContent() {
                 }
             }
         }
-
     }
-
 
 
     /**
@@ -69,8 +73,8 @@ class RepositoryContent() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
                     val value = dataSnapshot.getValue(PostVO::class.java)
-                    value.let {
-                        it?.imagePost
+                    if(dataSnapshot.key == "UserPost"){
+                        dataSnapshot.value
                     }
                     val imageUrl = value?.imagePost
                     val description = value?.description
@@ -86,6 +90,20 @@ class RepositoryContent() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    fun getToken() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
 
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                Log.d("", token!!)
+            })
+    }
 
 }
