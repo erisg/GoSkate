@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/ShopFrafment"
-        android:name="go.skatebogota.goskate.ui.content.ShopFrafment"
+        android:name="go.skatebogota.goskate.ui.map.ShopFrafment"
         android:label="ShopFrafment"
         tools:layout="@layout/shop" />
     <fragment

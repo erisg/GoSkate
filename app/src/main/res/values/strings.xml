@@ -43,6 +43,7 @@
     <string name="photo_profile">Selecciona una foto de perfil</string>
     <string name="notifiy">NOTIFICACIONES</string>
     <string name="message">MENSAJES</string>
+    <string name="description__comments_spot">DESCRIPCIONES</string>
 
 
 </resources>
