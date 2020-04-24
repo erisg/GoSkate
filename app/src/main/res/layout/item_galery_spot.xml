@@ -7,11 +7,10 @@
 
     <ImageView
         android:id="@+id/spotGalerymageView"
-        android:layout_width="0dp"
-        android:layout_height="350dp"
-        android:background="@drawable/ic_action_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_action_person" />
 </androidx.constraintlayout.widget.ConstraintLayout>

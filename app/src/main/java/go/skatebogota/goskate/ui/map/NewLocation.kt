@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -34,8 +35,10 @@ import go.skatebogota.goskate.util.adapters.RecyclerImagesSpot
 import go.skatebogota.goskate.util.interfaces.IMenuGone
 import go.skatebogota.goskate.util.mapUtil.*
 import kotlinx.android.synthetic.main.new_location.*
+import java.util.*
 
-class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
+    GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
     private var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
@@ -43,6 +46,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnMarke
     val galeryMutableList = mutableListOf<Uri>()
     val mutableData = MutableLiveData<MutableList<Uri>>()
     var uri: Uri? = null
+    var place = LatLng(4.597686, -74.081089)
 
 
     override fun onCreateView(
@@ -58,7 +62,6 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnMarke
         mapView!!.getMapAsync(this)
 
         adapter = RecyclerImagesSpot(this.context!!)
-        galeryRecyclerView.setHasFixedSize(true)
         galeryRecyclerView.layoutManager = LinearLayoutManager(this.context!!)
         galeryRecyclerView.adapter = adapter
 
@@ -74,7 +77,6 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnMarke
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             uri = data.data
-
 
             galeryMutableList.add(uri!!)
             mutableData.value = galeryMutableList
@@ -105,14 +107,45 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnMarke
             Log.e("oo", "Can't find style. Error: ", e)
         }
 
-//        val place = LatLng(4.597686, -74.081089)
-//        val zoomLevel = 11.1f
-//        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
+
+        val zoomLevel = 13.1f
+        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA")).isDraggable = true
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
+        mMap.setOnMarkerDragListener(this)
     }
 
-    override fun onMarkerClick(p0: Marker?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun onMarkerDragEnd(marker: Marker?) {
+        if (marker!!.equals(place)) {
+            Toast.makeText(this.context, "START", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
+    override fun onMarkerDragStart(marker: Marker?) {
+        if (marker!!.equals(place)) {
+            Toast.makeText(this.context, "START", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    override fun onMarkerDrag(marker: Marker?) {
+        if (marker!!.equals(place)) {
+            val newTitle = String.format(
+                Locale.getDefault(),
+                getString(R.string.add_place_ubication),
+                marker.position.latitude,
+                marker.position.longitude
+            );
+
+            Toast.makeText(this.context, "$newTitle", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        if (marker?.title != null) {
+            marker.isDraggable
+        }
+
+        return false
+    }
 }

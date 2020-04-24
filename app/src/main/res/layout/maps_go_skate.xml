@@ -11,18 +11,6 @@
         android:layout_height="match_parent">
 
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_place"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:elevation="5dp"
-            map:iconifiedByDefault="false"
-            map:layout_constraintEnd_toStartOf="@+id/mapView"
-            map:layout_constraintStart_toEndOf="@+id/mapView"
-            map:layout_constraintTop_toTopOf="parent"
-            map:queryHint="Search place..." />
-
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
@@ -41,6 +29,17 @@
             map:layout_constraintEnd_toEndOf="parent"
             map:srcCompat="@drawable/ic_add_location_black_24dp"
             tools:ignore="VectorDrawableCompat" />
+
+        <SearchView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="@+id/mapView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
