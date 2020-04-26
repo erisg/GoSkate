@@ -14,11 +14,12 @@ class ViewModelContent : ViewModel() {
     var currentUser = repositoryContent.auth
 
 
-    fun upLoadImagePost(userImagePost: Uri? , description:String , userPlace:String) {
+    fun upLoadImagePost(userImagePost: Uri?, description: String, userPlace: String): String {
         postVO.imagePost = userImagePost
         postVO.description = description
         postVO.spot = userPlace
-        repositoryContent.upLoadImagePost(postVO)
+        postVO.idUser = repositoryContent.auth.currentUser!!.uid
+        return repositoryContent.upLoadImagePost(postVO)
     }
 
     /**

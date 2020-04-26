@@ -29,8 +29,7 @@ class Login : AppCompatActivity() {
         }
 
         loginBtn.setOnClickListener {
-           // validateInfoUser()
-            startActivity(Intent(this, MainActivity::class.java))
+            validateInfoUser()
         }
 
         noAccountTextView.setOnClickListener {
@@ -52,20 +51,16 @@ class Login : AppCompatActivity() {
                 "POR FAVOR INGRESAR CONTRASEÑA"
             )
             else -> {
-                viewModel.loginUser(userEmail, userPassword)
-                validateUser()
+                val firebaseResponse = viewModel.loginUser(userEmail, userPassword)
+                if (firebaseResponse == "Successful") {
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    Toast.makeText(this, firebaseResponse, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
-    private fun validateUser() {
-        val firebaseResponse = viewModel.getUserRegisterResponse()
-        if (firebaseResponse == "Successful") {
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            Toast.makeText(this, "$firebaseResponse", Toast.LENGTH_SHORT)
-        }
-    }
 
     private fun validateEditText(editText: EditText, message: String) {
         editText.error = message

@@ -109,7 +109,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
 
 
         val zoomLevel = 13.1f
-        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA")).isDraggable = true
+        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA")).isDraggable
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
         mMap.setOnMarkerDragListener(this)
     }

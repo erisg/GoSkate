@@ -28,6 +28,7 @@ import go.skatebogota.goskate.ui.viewmodels.UserViewModel
 import go.skatebogota.goskate.util.customizedview.DatePickerDialogView
 import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserInfo
 import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserRegister
+import kotlinx.android.synthetic.main.circular_image_view.*
 import kotlinx.android.synthetic.main.register.*
 import java.util.*
 
@@ -86,7 +87,7 @@ class UserRegister : AppCompatActivity() {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             uri = data.data
             selet_photo.visibility = View.GONE
-            imageProfileButton.setImageURI(uri)
+            imageCircular.setImageURI(uri)
 
         }
     }
@@ -96,7 +97,7 @@ class UserRegister : AppCompatActivity() {
      * * VALIDA SI LA INFORMACION ESTA COMPLETA Y BIEN DILIGENCIADA
      */
 
-    @SuppressLint("ShowToast")
+
     private fun validaInfoNewUser() {
 
         userName = nameEditText.text.toString()
@@ -110,7 +111,7 @@ class UserRegister : AppCompatActivity() {
 
         when {
             uri == null -> {
-                Toast.makeText(this, "POR FAVOR ELIGE UNA FOTO DE PERFIL", Toast.LENGTH_LONG)
+                Toast.makeText(this, "POR FAVOR ELIGE UNA FOTO DE PERFIL", Toast.LENGTH_LONG).show()
             }
             TextUtils.isEmpty(userName) -> validateEditText(
                 nameEditText,
@@ -129,9 +130,20 @@ class UserRegister : AppCompatActivity() {
                 "POR FAVOR INGRESAR LA FECHA DE NACIMIENTO"
             )
 
-
             else -> {
-                viewModel.registerUser(uri, userName, userEmail, userPasswordTwo, ageUser, sexUser)
+                val firebaseResponse = viewModel.registerUser(
+                    uri,
+                    userName,
+                    userEmail,
+                    userPasswordTwo,
+                    ageUser,
+                    sexUser
+                )
+                if (firebaseResponse == "Successful") {
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    Toast.makeText(this, firebaseResponse, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -141,15 +153,6 @@ class UserRegister : AppCompatActivity() {
     private fun validateEditText(editText: EditText, message: String) {
         editText.error = message
         editText.requestFocus()
-    }
-
-    private fun saveInfoUser() {
-        val firebaseResponse = viewModel.getUserRegisterResponse()
-        if(firebaseResponse == "Successful") {
-            startActivity(Intent(this, MainActivity::class.java))
-        }else{
-            Toast.makeText(this, firebaseResponse,Toast.LENGTH_SHORT)
-        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package go.skatebogota.goskate.ui.content
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -76,10 +77,9 @@ class PostFragment : Fragment() {
         description = descriptionEditText.text.toString()
         userPlace = placeEditText.text.toString()
         if (userImagePost != null) {
-            viewModelContent.upLoadImagePost(userImagePost, description, userPlace)
-            val response = viewModelContent.getFirebaseResponseImagePost()
+            val response = viewModelContent.upLoadImagePost(userImagePost, description, userPlace)
             if (response != "Successful") {
-                Toast.makeText(this.context, "$response", Toast.LENGTH_SHORT)
+                Toast.makeText(this.context, response, Toast.LENGTH_SHORT).show()
             } else {
                 navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
             }

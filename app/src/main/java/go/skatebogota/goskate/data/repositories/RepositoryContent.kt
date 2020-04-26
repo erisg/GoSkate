@@ -24,37 +24,35 @@ class RepositoryContent() {
     private var storageReference: StorageReference? = storage.reference
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var refDataBse: DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost")
-    var idPost = String()
 
     /**
      * Se sube a firebase foto del post
      */
 
-    fun upLoadImagePost(postVO: PostVO) {
-        idPost = UUID.randomUUID().toString()
+    fun upLoadImagePost(postVO: PostVO): String {
+        postVO.idPost = UUID.randomUUID().toString()
         val refStorage = storage.getReference("images/" + UUID.randomUUID().toString())
 
         refStorage.putFile(postVO.imagePost!!).addOnSuccessListener {
             refStorage.downloadUrl.addOnSuccessListener {
                 val userMap = HashMap<String, Any>()
-                userMap["id"] = idPost
+                userMap["idPost"] = postVO.idPost!!
+                userMap["idUser"] = postVO.idUser!!
                 userMap["description"] = postVO.description!!
                 userMap["spot"] = postVO.spot!!
                 userMap["imagePost"] = it.toString()
 
-                refDataBse.child(idPost).setValue(userMap).addOnCompleteListener { task ->
+                refDataBse.child(postVO.idPost!!).setValue(userMap).addOnCompleteListener { task ->
                     val message = task.exception?.toString()
                     userResponse = if (task.isSuccessful) {
-                        Log.e("post", "yes")
                         "Successful"
                     } else {
-
-                        Log.e("post", "$message")
-                        "$message"
+                        message!!
                     }
                 }
             }
         }
+        return userResponse
     }
 
 
@@ -76,10 +74,12 @@ class RepositoryContent() {
                     if(dataSnapshot.key == "UserPost"){
                         dataSnapshot.value
                     }
+                    val idUser = value?.idUser
+                    val idPost = value?.idPost
                     val imageUrl = value?.imagePost
                     val description = value?.description
                     val spot = value?.spot
-                    val post = PostVO(imageUrl, description, spot)
+                    val post = PostVO(idPost, idUser, imageUrl, description, spot)
                     dataList.add(post)
                 }
 
@@ -90,20 +90,5 @@ class RepositoryContent() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    fun getToken() {
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w("", "getInstanceId failed", task.exception)
-                    return@OnCompleteListener
-                }
-
-                // Get new Instance ID token
-                val token = task.result?.token
-
-                Log.d("", token!!)
-            })
-    }
 
 }

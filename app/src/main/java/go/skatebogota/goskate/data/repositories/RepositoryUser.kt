@@ -17,63 +17,65 @@ class RepositoryUser() {
     var response: String = ""
     private var storage: FirebaseStorage = FirebaseStorage.getInstance()
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    var userResponse :String = ""
+    var userResponse: String = ""
 
     /**
      * Se registra USUARIO en retrofit
      */
-    fun registerUser(userVO: UserVO) {
-        auth.createUserWithEmailAndPassword(userVO.userEmail!!, userVO.password!!).addOnCompleteListener {
-            val message  = it.exception?.toString()
-            if(it.isSuccessful){
-                userVO.userId = auth.currentUser!!.uid
-                val userRef: DatabaseReference =
-                    FirebaseDatabase.getInstance().reference.child("Users")
-                val refStorage = storage.getReference("imagesProfile/" + UUID.randomUUID().toString())
-                refStorage.putFile(userVO.imageProfile!!).addOnSuccessListener {
-                    refStorage.downloadUrl.addOnSuccessListener {
-                        val userMap = HashMap<String, Any>()
-                        userMap["uid"] = userVO.userId!!
-                        userMap["imageProfle"] = userVO.imageProfile.toString()
-                        userMap["userName"] = userVO.userName!!
-                        userMap["userEmail"] = userVO.userEmail!!
-                        userMap["userPassword"] = userVO.password!!
-                        userMap["ageUser"] = userVO.birthDate!!
-                        userMap["sexUser"] = userVO.sex!!
+    fun registerUser(userVO: UserVO): String {
+        auth.createUserWithEmailAndPassword(userVO.userEmail!!, userVO.password!!)
+            .addOnCompleteListener {
+                val message = it.exception?.toString()
+                if (it.isSuccessful) {
+                    userVO.userId = auth.currentUser!!.uid
+                    val userRef: DatabaseReference =
+                        FirebaseDatabase.getInstance().reference.child("Users")
+                    val refStorage =
+                        storage.getReference("imagesProfile/" + UUID.randomUUID().toString())
+                    refStorage.putFile(userVO.imageProfile!!).addOnSuccessListener {
+                        refStorage.downloadUrl.addOnSuccessListener {
+                            val userMap = HashMap<String, Any>()
+                            userMap["uid"] = userVO.userId!!
+                            userMap["imageProfle"] = userVO.imageProfile.toString()
+                            userMap["userName"] = userVO.userName!!
+                            userMap["userEmail"] = userVO.userEmail!!
+                            userMap["userPassword"] = userVO.password!!
+                            userMap["ageUser"] = userVO.birthDate!!
+                            userMap["sexUser"] = userVO.sex!!
 
-                        userRef.child(userVO.userId!!).setValue(userMap)
-                            .addOnCompleteListener { task ->
-                                val message = task.exception?.toString()
-                                if (task.isSuccessful) {
-                                    userResponse = "Successful"
-                                } else {
-                                    userResponse = "$message"
+                            userRef.child(userVO.userId!!).setValue(userMap)
+                                .addOnCompleteListener { task ->
+                                    val message = task.exception?.toString()
+                                    userResponse = if (task.isSuccessful) {
+                                        "Successful"
+                                    } else {
+                                        "$message"
+                                    }
                                 }
-                            }
+                        }
 
                     }
-
+                    userResponse = "Successful"
+                } else {
+                    userResponse = "$message"
                 }
-                userResponse = "Successful"
-            }else{
-                userResponse ="$message"
             }
-        }
+        return userResponse
     }
 
 
-    fun loginUser(userVO: UserVO) {
+    fun loginUser(userVO: UserVO): String {
+        auth.signInWithEmailAndPassword(userVO.userEmail!!, userVO.password!!)
+            .addOnCompleteListener { result ->
+                val message = result.exception?.toString()
+                userResponse = if (result.isSuccessful) {
+                    "Successful"
+                } else {
+                    "$message"
+                }
 
-        auth.signInWithEmailAndPassword(userVO.userEmail!!, userVO.password!!).addOnCompleteListener {result->
-            val message  = result.exception?.toString()
-            if(result.isSuccessful){
-                userResponse = "Successful"
-            }else{
-                userResponse ="$message"
             }
-
-        }
+        return userResponse
     }
-
 
 }

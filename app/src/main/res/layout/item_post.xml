@@ -8,7 +8,7 @@
     app:cardBackgroundColor="@color/blueDark"
     app:cardCornerRadius="20dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,29 +16,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imafeProfileCardView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="5.5dp"
+            app:cardCornerRadius="64dp"
+            app:srcCompat="@drawable/logoskatepark">
+
+            <ImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/post" />
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/placeEditText"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:gravity="center|start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="7.5dp"
             android:textColor="#151313"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView11"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
             tools:text="TERCER MILENIO" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="27dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logoskatepark" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
     <ImageView
@@ -47,11 +50,10 @@
         android:layout_height="321dp"
         android:background="@drawable/post"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/puntuacion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,24 +63,19 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
             app:srcCompat="@drawable/ic_action_like"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/imageView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView7"
-            app:layout_constraintStart_toEndOf="@+id/imageView12"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_action_commit" />
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/ic_action_commit"
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/description"
@@ -91,34 +88,32 @@
             app:layout_constraintTop_toBottomOf="@id/imageView19"
             tools:text="32" />
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/puntuacion">
+
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
             android:text="@string/likes"
             android:textColor="#120101"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/description"
-            app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="18sp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/puntuacion">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="410dp"
-            android:layout_height="52dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expandir contenido"
+            android:textColor="#120101"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

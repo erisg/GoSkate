@@ -27,22 +27,22 @@ class UserViewModel : ViewModel() {
         userPassword: String,
         ageUser: String,
         sexUser: String
-    ) {
+    ): String {
         userVO.imageProfile = imageProfile
         userVO.userName = userName
         userVO.userEmail = userEmail
         userVO.password = userPassword
         userVO.birthDate = ageUser
         userVO.sex = sexUser
-        repositoryUser.registerUser(userVO)
+        return repositoryUser.registerUser(userVO)
     }
 
     fun getUserRegisterResponse() = repositoryUser.userResponse
 
-    fun loginUser(email: String, password: String){
+    fun loginUser(email: String, password: String): String {
         userVO.userEmail = email
         userVO.password = password
-        repositoryUser.loginUser(userVO)
+        return repositoryUser.loginUser(userVO)
     }
 
 
