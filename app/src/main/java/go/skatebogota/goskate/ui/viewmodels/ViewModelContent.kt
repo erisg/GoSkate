@@ -22,11 +22,6 @@ class ViewModelContent : ViewModel() {
         return repositoryContent.upLoadImagePost(postVO)
     }
 
-    /**
-     * Trae la respuesta
-     */
-
-    fun getFirebaseResponseImagePost() = repositoryContent.userResponse
 
     /**
      * Get post from firebase

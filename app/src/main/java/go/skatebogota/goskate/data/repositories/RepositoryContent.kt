@@ -5,6 +5,7 @@ import android.provider.Settings.Global.getString
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.OnCompleteListener
@@ -70,15 +71,12 @@ class RepositoryContent() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
-                    val value = dataSnapshot.getValue(PostVO::class.java)
-                    if(dataSnapshot.key == "UserPost"){
-                        dataSnapshot.value
-                    }
-                    val idUser = value?.idUser
-                    val idPost = value?.idPost
+                    val value = postSnapshot.getValue(PostVO::class.java)
+                    val idUser = value?.idUser.toString()
+                    val idPost = value?.idPost.toString()
                     val imageUrl = value?.imagePost
-                    val description = value?.description
-                    val spot = value?.spot
+                    val description = value?.description.toString()
+                    val spot = value?.spot.toString()
                     val post = PostVO(idPost, idUser, imageUrl, description, spot)
                     dataList.add(post)
                 }
