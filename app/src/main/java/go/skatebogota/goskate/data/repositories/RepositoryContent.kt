@@ -34,7 +34,7 @@ class RepositoryContent() {
         postVO.idPost = UUID.randomUUID().toString()
         val refStorage = storage.getReference("images/" + UUID.randomUUID().toString())
 
-        refStorage.putFile(postVO.imagePost!!).addOnSuccessListener {
+        refStorage.putFile(postVO.imagePost!!.toUri()).addOnSuccessListener {
             refStorage.downloadUrl.addOnSuccessListener {
                 val userMap = HashMap<String, Any>()
                 userMap["idPost"] = postVO.idPost!!
@@ -61,27 +61,23 @@ class RepositoryContent() {
      * Se trae de firebase la imagen del post
      */
 
-    fun getDataPost(): LiveData<MutableList<PostVO>> {
+    fun getDataPost(): MutableLiveData<List<PostVO>> {
         val dataList = mutableListOf<PostVO>()
-        val mutableData = MutableLiveData<MutableList<PostVO>>()
+        val mutableData = MutableLiveData<List<PostVO>>()
         refDataBse.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (postSnapshot in dataSnapshot.children) {
-                    val value = postSnapshot.getValue(PostVO::class.java)
-                    val idUser = value?.idUser.toString()
-                    val idPost = value?.idPost.toString()
-                    val imageUrl = value?.imagePost
-                    val description = value?.description.toString()
-                    val spot = value?.spot.toString()
-                    val post = PostVO(idPost, idUser, imageUrl, description, spot)
-                    dataList.add(post)
+                val list = dataSnapshot.children.map {
+                    it.getValue(PostVO::class.java)!!
                 }
 
-                mutableData.value = dataList
+                list.let {
+                    mutableData.value = it
+                }
+
             }
         })
         return mutableData

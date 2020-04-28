@@ -21,9 +21,9 @@ import java.io.File
 class RecyclerPostAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerPostAdapter.ViewHolder>() {
 
-    private var dataList = mutableListOf<PostVO>()
+    private var dataList = emptyList<PostVO>()
 
-    fun setListData(data: MutableList<PostVO>) {
+    fun setListData(data: List<PostVO>) {
         dataList = data
     }
 
@@ -35,14 +35,17 @@ class RecyclerPostAdapter(private val context: Context) :
 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var imageView : ImageView = view.img_user
+        var imageView: ImageView = view.img_post
         var postName : TextView = view.placeEditText
         var descriptionPost: TextView = view.description
         var likeImageView : ImageView = view.likeImageView
         var numberOfLikes: TextView = view.numberLikesTextView
 
         fun bindView(postVO: PostVO) {
-            imageView.setImageURI(postVO.imagePost)
+            Glide.with(context)
+                .load(File(postVO.imagePost!!))
+                .skipMemoryCache(true)//Borrar cache
+                .into(imageView)
             postName.text = postVO.spot
             descriptionPost.text = postVO.description
         }
@@ -50,11 +53,11 @@ class RecyclerPostAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = dataList[position]
-        isLike(post.idPost , holder.likeImageView , post.idUser)
         numberOfLikes(holder.numberOfLikes , post.idPost )
         holder.bindView(post)
         holder.likeImageView.setOnClickListener {
-            if (holder.likeImageView.tag == "like"){
+            isLike(post.idPost, holder.likeImageView, post.idUser)
+            if (holder.likeImageView.tag != "like") {
                 FirebaseDatabase.getInstance().reference
                     .child("Likes")
                     .child(post.idPost!!)
@@ -91,13 +94,13 @@ class RecyclerPostAdapter(private val context: Context) :
         likesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 if(p0.child(idUser!!).exists()){
-                    likeImageView.setImageResource(R.drawable.ic_action_like_red)
+                    likeImageView.setImageResource(R.drawable.fire_red)
                     likeImageView.tag = "like"
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                likeImageView.setImageResource(R.drawable.ic_action_like)
+                likeImageView.setImageResource(R.drawable.fire)
                 likeImageView.tag = "like"
             }
         })

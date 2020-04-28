@@ -4,7 +4,6 @@ package go.skatebogota.goskate.ui.map
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Resources
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -16,8 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -28,12 +25,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.data.models.Spot
-import go.skatebogota.goskate.data.persistence.LocationEntity
-import go.skatebogota.goskate.util.ResourcesUtils
 import go.skatebogota.goskate.util.adapters.RecyclerImagesSpot
 import go.skatebogota.goskate.util.interfaces.IMenuGone
-import go.skatebogota.goskate.util.mapUtil.*
 import kotlinx.android.synthetic.main.new_location.*
 import java.util.*
 
@@ -94,6 +87,8 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
 
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
+        mMap.uiSettings.isRotateGesturesEnabled = false
+        mMap.uiSettings.isScrollGesturesEnabled = false
         mMap.setOnMarkerClickListener(this)
 
         try {
@@ -108,8 +103,9 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
         }
 
 
+
         val zoomLevel = 13.1f
-        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA")).isDraggable
+        mMap.addMarker(MarkerOptions().position(place).title("BOGOTA").draggable(true))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
         mMap.setOnMarkerDragListener(this)
     }

@@ -12,6 +12,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/img_post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,10 +46,12 @@
 
 
     <ImageView
-        android:id="@+id/img_user"
+        android:id="@+id/img_post"
         android:layout_width="412dp"
         android:layout_height="321dp"
         android:background="@drawable/post"
+        android:scaleType="center"
+        app:layout_constraintBottom_toTopOf="@+id/puntuacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
@@ -57,16 +60,17 @@
         android:id="@+id/puntuacion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_user">
+        app:layout_constraintTop_toBottomOf="@id/img_post">
 
         <ImageView
             android:id="@+id/likeImageView"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="5dp"
-            app:srcCompat="@drawable/ic_action_like"
+            app:srcCompat="@drawable/fire"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageView
@@ -79,8 +83,9 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:textColor="#120101"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,6 +97,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

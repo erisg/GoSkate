@@ -1,13 +1,14 @@
 package go.skatebogota.goskate.ui.content
 
-import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +17,8 @@ import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.data.models.PostVO
 import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
+import kotlinx.android.synthetic.main.include_image.view.*
+import kotlinx.android.synthetic.main.include_video.view.*
 import kotlinx.android.synthetic.main.post.*
 
 class PostFragment : Fragment() {
@@ -27,6 +30,7 @@ class PostFragment : Fragment() {
     lateinit var description: String
     lateinit var userPlace: String
     lateinit var audioList: ArrayList<PostVO>
+    var mediaControl: MediaController? = null
     val VIDEO: Int = 3
     lateinit var uri: Uri
 
@@ -43,12 +47,13 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
+        mediaControl = MediaController(this.context)
         navController = Navigation.findNavController(view)
 
 
 
         videoImageView.setOnClickListener {
-
+            videoFileChooser()
         }
 
         galeryImageView.setOnClickListener {
@@ -64,10 +69,15 @@ class PostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             filePath = data.data
-            imagePost.setImageURI(filePath)
+            includeImagePost.imageView.setImageURI(filePath)
         } else
-            if (requestCode == VIDEO && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-                uri = data.data!!
+            if (requestCode == VIDEO && resultCode == RESULT_OK) {
+                includeImagePost.visibility = View.GONE
+                includeVideoPost.visibility = View.VISIBLE
+                val videoUri: Uri = data?.data!!
+                filePath = data.data
+                includeVideoPost.postVideoView.setMediaController(mediaControl)
+                includeVideoPost.postVideoView.setVideoURI(videoUri)
 
             }
     }

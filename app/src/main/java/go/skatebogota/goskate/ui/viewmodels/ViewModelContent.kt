@@ -12,10 +12,11 @@ class ViewModelContent : ViewModel() {
     private val repositoryContent = RepositoryContent()
     var postVO: PostVO = PostVO()
     var currentUser = repositoryContent.auth
+    val mutableData = MutableLiveData<List<PostVO>>()
 
 
     fun upLoadImagePost(userImagePost: Uri?, description: String, userPlace: String): String {
-        postVO.imagePost = userImagePost
+        postVO.imagePost = userImagePost.toString()
         postVO.description = description
         postVO.spot = userPlace
         postVO.idUser = repositoryContent.auth.currentUser!!.uid
@@ -27,12 +28,11 @@ class ViewModelContent : ViewModel() {
      * Get post from firebase
      */
 
-    fun getInfoPost(): LiveData<MutableList<PostVO>> {
-        val mutableData = MutableLiveData<MutableList<PostVO>>()
+    fun getInfoPost() {
         repositoryContent.getDataPost().observeForever { userPost ->
             mutableData.value = userPost
         }
-        return mutableData
+
     }
 
 

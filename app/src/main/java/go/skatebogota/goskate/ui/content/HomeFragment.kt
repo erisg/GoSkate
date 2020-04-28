@@ -43,6 +43,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
         recyclerPost.setHasFixedSize(true)
         recyclerPost.layoutManager = LinearLayoutManager(this.context!!)
         recyclerPost.adapter = adapter
+        viewModelContent.mutableData.observe(viewLifecycleOwner, Observer {
+            adapter.setListData(it)
+            adapter.notifyDataSetChanged()
+        })
         getAllUserPost()
 
 
@@ -63,9 +67,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun getAllUserPost() {
-        viewModelContent.getInfoPost().observe(viewLifecycleOwner, Observer {
-            adapter.setListData(it)
-            adapter.notifyDataSetChanged()
-        })
+        viewModelContent.getInfoPost()
+
     }
+
+
 }
