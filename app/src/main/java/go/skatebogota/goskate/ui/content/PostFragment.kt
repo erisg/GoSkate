@@ -32,7 +32,7 @@ class PostFragment : Fragment() {
     lateinit var audioList: ArrayList<PostVO>
     var mediaControl: MediaController? = null
     val VIDEO: Int = 3
-    lateinit var uri: Uri
+    lateinit var typePath: String
 
     companion object {
         private const val PICK_IMAGE_CODE = 1234
@@ -69,6 +69,7 @@ class PostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             filePath = data.data
+            typePath = "PHOTO"
             includeImagePost.imageView.setImageURI(filePath)
         } else
             if (requestCode == VIDEO && resultCode == RESULT_OK) {
@@ -76,6 +77,7 @@ class PostFragment : Fragment() {
                 includeVideoPost.visibility = View.VISIBLE
                 val videoUri: Uri = data?.data!!
                 filePath = data.data
+                typePath = "VIDEO"
                 includeVideoPost.postVideoView.setMediaController(mediaControl)
                 includeVideoPost.postVideoView.setVideoURI(videoUri)
 
@@ -87,7 +89,8 @@ class PostFragment : Fragment() {
         description = descriptionEditText.text.toString()
         userPlace = placeEditText.text.toString()
         if (userImagePost != null) {
-            val response = viewModelContent.upLoadImagePost(userImagePost, description, userPlace)
+            val response =
+                viewModelContent.upLoadImagePost(userImagePost, description, userPlace, typePath)
             if (response != "Successful") {
                 Toast.makeText(this.context, response, Toast.LENGTH_SHORT).show()
             } else {

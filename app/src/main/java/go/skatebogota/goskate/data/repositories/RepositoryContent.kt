@@ -41,6 +41,7 @@ class RepositoryContent() {
                 userMap["idUser"] = postVO.idUser!!
                 userMap["description"] = postVO.description!!
                 userMap["spot"] = postVO.spot!!
+                userMap["type"] = postVO.type!!
                 userMap["imagePost"] = it.toString()
 
                 refDataBse.child(postVO.idPost!!).setValue(userMap).addOnCompleteListener { task ->
@@ -62,7 +63,6 @@ class RepositoryContent() {
      */
 
     fun getDataPost(): MutableLiveData<List<PostVO>> {
-        val dataList = mutableListOf<PostVO>()
         val mutableData = MutableLiveData<List<PostVO>>()
         refDataBse.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -73,7 +73,6 @@ class RepositoryContent() {
                 val list = dataSnapshot.children.map {
                     it.getValue(PostVO::class.java)!!
                 }
-
                 list.let {
                     mutableData.value = it
                 }

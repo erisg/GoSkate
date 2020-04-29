@@ -8,6 +8,7 @@ data class PostVO(
     var idUser: String? = null,
     var imagePost: String? = null,
     var description: String? = null,
+    var type: String? = null,
     var datePost: String? = null,
     var likes: Int = 0,
     var spot: String? = null

@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.data.models.PostVO
-import kotlinx.android.synthetic.main.item_post.view.*
+import kotlinx.android.synthetic.main.item_image_post.view.*
 import java.io.File
 
 class RecyclerPostAdapter(private val context: Context) :
@@ -28,7 +28,7 @@ class RecyclerPostAdapter(private val context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(
-        LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
+        LayoutInflater.from(context).inflate(R.layout.item_image_post, parent, false)
     )
 
     override fun getItemCount() = dataList.size

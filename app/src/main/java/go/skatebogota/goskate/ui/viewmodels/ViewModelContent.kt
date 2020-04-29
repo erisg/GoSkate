@@ -15,10 +15,16 @@ class ViewModelContent : ViewModel() {
     val mutableData = MutableLiveData<List<PostVO>>()
 
 
-    fun upLoadImagePost(userImagePost: Uri?, description: String, userPlace: String): String {
+    fun upLoadImagePost(
+        userImagePost: Uri?,
+        description: String,
+        userPlace: String,
+        filePath: String
+    ): String {
         postVO.imagePost = userImagePost.toString()
         postVO.description = description
         postVO.spot = userPlace
+        postVO.type = filePath
         postVO.idUser = repositoryContent.auth.currentUser!!.uid
         return repositoryContent.upLoadImagePost(postVO)
     }
