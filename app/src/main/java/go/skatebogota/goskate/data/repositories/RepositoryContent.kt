@@ -19,7 +19,6 @@ import java.util.*
 
 class RepositoryContent() {
 
-    var userResponse: String = ""
     var firebase: FirebaseAuth = FirebaseAuth.getInstance()
     private var storage: FirebaseStorage = FirebaseStorage.getInstance()
     private var storageReference: StorageReference? = storage.reference
@@ -30,10 +29,10 @@ class RepositoryContent() {
      * Se sube a firebase foto del post
      */
 
-    fun upLoadImagePost(postVO: PostVO): String {
+    fun upLoadImagePost(postVO: PostVO): LiveData<String> {
         postVO.idPost = UUID.randomUUID().toString()
         val refStorage = storage.getReference("images/" + UUID.randomUUID().toString())
-
+        val mutableDataResponse = MutableLiveData<String>()
         refStorage.putFile(postVO.imagePost!!.toUri()).addOnSuccessListener {
             refStorage.downloadUrl.addOnSuccessListener {
                 val userMap = HashMap<String, Any>()
@@ -46,15 +45,15 @@ class RepositoryContent() {
 
                 refDataBse.child(postVO.idPost!!).setValue(userMap).addOnCompleteListener { task ->
                     val message = task.exception?.toString()
-                    userResponse = if (task.isSuccessful) {
-                        "Successful"
+                    if (task.isSuccessful) {
+                        mutableDataResponse.value = "Successful"
                     } else {
-                        message!!
+                        mutableDataResponse.value = message!!
                     }
                 }
             }
         }
-        return userResponse
+        return mutableDataResponse
     }
 
 

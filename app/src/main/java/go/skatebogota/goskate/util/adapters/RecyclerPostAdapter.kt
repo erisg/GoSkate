@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.MediaController
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
@@ -22,6 +24,7 @@ class RecyclerPostAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerPostAdapter.ViewHolder>() {
 
     private var dataList = emptyList<PostVO>()
+    var  mediaController = MediaController(context)
 
     fun setListData(data: List<PostVO>) {
         dataList = data
@@ -36,6 +39,7 @@ class RecyclerPostAdapter(private val context: Context) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imageView: ImageView = view.img_post
+        var videoView: VideoView = view.video_post
         var postName : TextView = view.placeEditText
         var descriptionPost: TextView = view.description
         var likeImageView : ImageView = view.likeImageView
@@ -49,12 +53,30 @@ class RecyclerPostAdapter(private val context: Context) :
             postName.text = postVO.spot
             descriptionPost.text = postVO.description
         }
+
+        fun bindVideoView(postVO: PostVO) {
+            videoView.setVideoPath(postVO.imagePost)
+            postName.text = postVO.spot
+            descriptionPost.text = postVO.description
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = dataList[position]
         numberOfLikes(holder.numberOfLikes , post.idPost )
-        holder.bindView(post)
+        if(post.type == "PHOTO"){
+            holder.imageView.visibility = View.VISIBLE
+            holder.videoView.visibility = View.GONE
+            holder.bindView(post)
+        }else{
+            holder.imageView.visibility = View.GONE
+            holder.videoView.visibility = View.VISIBLE
+            mediaController.setAnchorView(holder.videoView)
+            holder.videoView.setMediaController(mediaController)
+            holder.videoView.seekTo(100)
+            holder.bindVideoView(post)
+        }
+
         holder.likeImageView.setOnClickListener {
             isLike(post.idPost, holder.likeImageView, post.idUser)
             if (holder.likeImageView.tag != "like") {

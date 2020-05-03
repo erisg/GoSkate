@@ -2,6 +2,7 @@ package go.skatebogota.goskate.data.repositories
 
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -64,18 +65,19 @@ class RepositoryUser() {
     }
 
 
-    fun loginUser(userVO: UserVO): String {
+    fun loginUser(userVO: UserVO): MutableLiveData<String> {
+        val mutableDataResponse = MutableLiveData<String>()
         auth.signInWithEmailAndPassword(userVO.userEmail!!, userVO.password!!)
             .addOnCompleteListener { result ->
                 val message = result.exception?.toString()
-                userResponse = if (result.isSuccessful) {
-                    "Successful"
+                 if (result.isSuccessful) {
+                     mutableDataResponse.value = "Successful"
                 } else {
-                    "$message"
+                     mutableDataResponse.value = message
                 }
 
             }
-        return userResponse
+        return mutableDataResponse
     }
 
 }

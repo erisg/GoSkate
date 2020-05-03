@@ -24,7 +24,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        if(viewModel.currentUser!=null){
+        if (viewModel.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
@@ -51,12 +51,14 @@ class Login : AppCompatActivity() {
                 "POR FAVOR INGRESAR CONTRASEÑA"
             )
             else -> {
-                val firebaseResponse = viewModel.loginUser(userEmail, userPassword)
-                if (firebaseResponse == "Successful") {
-                    startActivity(Intent(this, MainActivity::class.java))
-                } else {
-                    Toast.makeText(this, firebaseResponse, Toast.LENGTH_SHORT).show()
+                viewModel.loginUser(userEmail, userPassword).observeForever {
+                    if (it == "Successful") {
+                        startActivity(Intent(this, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                    }
                 }
+
             }
         }
     }

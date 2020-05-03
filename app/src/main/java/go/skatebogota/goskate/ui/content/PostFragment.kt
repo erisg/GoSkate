@@ -48,7 +48,6 @@ class PostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         mediaControl = MediaController(this.context)
-        navController = Navigation.findNavController(view)
 
 
 
@@ -78,7 +77,6 @@ class PostFragment : Fragment() {
                 val videoUri: Uri = data?.data!!
                 filePath = data.data
                 typePath = "VIDEO"
-                includeVideoPost.postVideoView.setMediaController(mediaControl)
                 includeVideoPost.postVideoView.setVideoURI(videoUri)
 
             }
@@ -89,14 +87,15 @@ class PostFragment : Fragment() {
         description = descriptionEditText.text.toString()
         userPlace = placeEditText.text.toString()
         if (userImagePost != null) {
-            val response =
-                viewModelContent.upLoadImagePost(userImagePost, description, userPlace, typePath)
-            if (response != "Successful") {
-                Toast.makeText(this.context, response, Toast.LENGTH_SHORT).show()
-            } else {
-                navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+                viewModelContent.upLoadImagePost(userImagePost, description, userPlace, typePath).observeForever {
+                    if(it == "Successful"){
+                        Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+                    }else {
+                        navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
+                    }
+                }
+
             }
-        }
     }
 
     private fun videoFileChooser() {

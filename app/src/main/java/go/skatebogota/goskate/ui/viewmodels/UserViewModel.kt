@@ -2,6 +2,7 @@ package go.skatebogota.goskate.ui.viewmodels
 
 
 import android.net.Uri
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.data.repositories.RepositoryUser
@@ -39,7 +40,7 @@ class UserViewModel : ViewModel() {
 
     fun getUserRegisterResponse() = repositoryUser.userResponse
 
-    fun loginUser(email: String, password: String): String {
+    fun loginUser(email: String, password: String): MutableLiveData<String> {
         userVO.userEmail = email
         userVO.password = password
         return repositoryUser.loginUser(userVO)
