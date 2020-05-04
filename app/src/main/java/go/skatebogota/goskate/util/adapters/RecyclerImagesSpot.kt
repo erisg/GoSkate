@@ -1,39 +1,38 @@
 package go.skatebogota.goskate.util.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import go.skatebogota.goskate.R
 import kotlinx.android.synthetic.main.item_galery_spot.view.*
+import java.io.File
 
-class RecyclerImagesSpot(private val context: Context) :
-    RecyclerView.Adapter<RecyclerImagesSpot.ViewHolder>() {
+class RecyclerImagesSpot(val context: Context,
+                         private val EvidencesPreview: List<String>) : BaseAdapter() {
 
-    private var dataList = mutableListOf<Uri>()
 
-    fun setListData(data: MutableList<Uri>) {
-        dataList = data
-    }
+    override fun getItem(position: Int) = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(
-        LayoutInflater.from(context).inflate(R.layout.item_galery_spot, parent, false)
-    )
+    override fun getItemId(position: Int) = 0L
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var imageView = view.spotGalerymageView
+    override fun getCount() = this.EvidencesPreview.size
 
-        fun bindView(uri: Uri) {
-            imageView.setImageURI(uri)
-        }
-    }
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-    override fun getItemCount() = dataList.size
+        val inflater=(context as Activity).layoutInflater
+        val view=inflater.inflate(R.layout.item_galery_spot,parent, false)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val post = dataList[position]
-        holder.bindView(post)
+
+
+        return view
+
+
     }
 }

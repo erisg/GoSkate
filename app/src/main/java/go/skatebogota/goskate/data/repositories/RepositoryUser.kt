@@ -23,7 +23,8 @@ class RepositoryUser() {
     /**
      * Se registra USUARIO en retrofit
      */
-    fun registerUser(userVO: UserVO): String {
+    fun registerUser(userVO: UserVO): MutableLiveData<String> {
+        val mutableDataResponse = MutableLiveData<String>()
         auth.createUserWithEmailAndPassword(userVO.userEmail!!, userVO.password!!)
             .addOnCompleteListener {
                 val message = it.exception?.toString()
@@ -47,21 +48,17 @@ class RepositoryUser() {
                             userRef.child(userVO.userId!!).setValue(userMap)
                                 .addOnCompleteListener { task ->
                                     val message = task.exception?.toString()
-                                    userResponse = if (task.isSuccessful) {
+                                    mutableDataResponse.value = if (task.isSuccessful) {
                                         "Successful"
                                     } else {
                                         "$message"
                                     }
                                 }
                         }
-
                     }
-                    userResponse = "Successful"
-                } else {
-                    userResponse = "$message"
                 }
             }
-        return userResponse
+        return mutableDataResponse
     }
 
 

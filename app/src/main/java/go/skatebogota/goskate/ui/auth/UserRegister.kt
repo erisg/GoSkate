@@ -131,19 +131,14 @@ class UserRegister : AppCompatActivity() {
             )
 
             else -> {
-                val firebaseResponse = viewModel.registerUser(
-                    uri,
-                    userName,
-                    userEmail,
-                    userPasswordTwo,
-                    ageUser,
-                    sexUser
-                )
-                if (firebaseResponse == "Successful") {
-                    startActivity(Intent(this, MainActivity::class.java))
-                } else {
-                    Toast.makeText(this, firebaseResponse, Toast.LENGTH_SHORT).show()
+                viewModel.registerUser(uri, userName, userEmail, userPasswordTwo, ageUser, sexUser).observeForever {
+                    if (it == "Successful") {
+                        startActivity(Intent(this, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                    }
                 }
+
             }
         }
 

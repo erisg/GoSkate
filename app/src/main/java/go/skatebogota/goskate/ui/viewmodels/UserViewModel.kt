@@ -21,14 +21,7 @@ class UserViewModel : ViewModel() {
     var password:String? = null
 
 
-    fun registerUser(
-        imageProfile: Uri?,
-        userName: String,
-        userEmail: String,
-        userPassword: String,
-        ageUser: String,
-        sexUser: String
-    ): String {
+    fun registerUser(imageProfile: Uri?, userName: String, userEmail: String, userPassword: String, ageUser: String, sexUser: String):  MutableLiveData<String> {
         userVO.imageProfile = imageProfile
         userVO.userName = userName
         userVO.userEmail = userEmail
@@ -38,7 +31,7 @@ class UserViewModel : ViewModel() {
         return repositoryUser.registerUser(userVO)
     }
 
-    fun getUserRegisterResponse() = repositoryUser.userResponse
+
 
     fun loginUser(email: String, password: String): MutableLiveData<String> {
         userVO.userEmail = email

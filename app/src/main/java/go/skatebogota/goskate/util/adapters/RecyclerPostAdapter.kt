@@ -48,6 +48,7 @@ class RecyclerPostAdapter(private val context: Context) :
         fun bindView(postVO: PostVO) {
             Glide.with(context)
                 .load(File(postVO.imagePost!!))
+                .fitCenter()
                 .skipMemoryCache(true)//Borrar cache
                 .into(imageView)
             postName.text = postVO.spot

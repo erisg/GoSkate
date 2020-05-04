@@ -43,7 +43,11 @@
         android:label="NewLocation"
         tools:layout="@layout/new_location">
 
+        <action
+            android:id="@+id/action_newLocation_to_newPostImageVideoGallery"
+            app:destination="@id/newPostImageVideoGallery" />
     </fragment>
+
     <fragment
         android:id="@+id/notifyFragment"
         android:name="go.skatebogota.goskate.ui.content.notifications.NotificationContainerFragment"
@@ -63,6 +67,16 @@
         android:name="go.skatebogota.goskate.ui.content.notifications.SearchNewMessage"
         android:label="SearchNewMessage"
         tools:layout="@layout/search_new_message"/>
+
+    <fragment
+        android:id="@+id/newPostImageVideoGallery"
+        android:name="go.skatebogota.goskate.ui.content.NewPostImageVideoGallery"
+        android:label="NewPostImageVideoGallery"
+        tools:layout="@layout/galery_photo_video">
+        <action
+            android:id="@+id/action_newPostImageVideoGallery_to_newLocation"
+            app:destination="@id/newLocation" />
+    </fragment>
 
 
 </navigation>
