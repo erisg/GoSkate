@@ -45,5 +45,31 @@
     <string name="message">MENSAJES</string>
     <string name="description__comments_spot">DESCRIPCIONES</string>
 
+    <string-array name="categories_array">
+        <item>STREET</item>
+        <item>SKATE PARK</item>
+        <item>VERTICAL</item>
+    </string-array>
+
+    <string-array name="hour_am_array">
+        <item>05:00am</item>
+        <item>06:00am</item>
+        <item>07:00am</item>
+        <item>08:00am</item>
+        <item>09:00am</item>
+    </string-array>
+
+    <string-array name="hour_pm_array">
+        <item>05:00pm</item>
+        <item>06:00pm</item>
+        <item>07:00pm</item>
+    </string-array>
+
+    <string-array name="days_array">
+        <item>DIA PAR SKATE</item>
+        <item>DIA IMPAR BIKE</item>
+        <item>DIA PAR BIKE</item>
+        <item>DIA IMPAR SKATE</item>
+    </string-array>
 
 </resources>

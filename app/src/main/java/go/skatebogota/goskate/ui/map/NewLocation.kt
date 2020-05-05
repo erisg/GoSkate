@@ -13,6 +13,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -70,10 +72,104 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
         mapView!!.onResume()
         mapView!!.getMapAsync(this)
 
+        chargeSpinnerData()
+
+
+
+
+
         addPicPost.setOnClickListener {
             navController!!.navigate(R.id.action_newLocation_to_newPostImageVideoGallery)
         }
 
+
+        categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                if (position == 1){
+                    categoryTextView.visibility = View.VISIBLE
+                    restrictionConstraintLayout.visibility = View.VISIBLE
+                }else{
+                    categoryTextView.visibility = View.GONE
+                    restrictionConstraintLayout.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+
+        houramSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                restritionTextConstraint.visibility = View.VISIBLE
+               when(position){
+                   0 ->{
+                       houramVTextView.text = "05:00am"
+                   }
+                   1 ->{
+                       houramVTextView.text = "06:00am"
+                   }
+                   2 ->{
+                       houramVTextView.text = "07:00am"
+                   }
+                   3 ->{
+                       houramVTextView.text = "08:00am"
+                   }
+                   4 ->{
+                       houramVTextView.text = "09:00am"
+                   }
+               }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+
+        hourPmspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                restritionTextConstraint.visibility = View.VISIBLE
+                when(position){
+                    0 ->{
+                        hourpmVTextView.text = "05:00pm"
+                    }
+                    1 ->{
+                        hourpmVTextView.text = "06:00pm"
+                    }
+                    2 ->{
+                        hourpmVTextView.text = "07:00am"
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+
+        daySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                restritionTextConstraint.visibility = View.VISIBLE
+                when(position){
+                    0 ->{
+                        dayImpTextView.text = "DIA PAR SKATE"
+                    }
+                    1 ->{
+                        dayImpTextView.text = "DIA IMPAR BIKE"
+                    }
+                    2 ->{
+                        dayImpTextView.text = "DIA PAR BIKE"
+                    }
+                    3 ->{
+                        dayImpTextView.text = "DIA IMPAR SKATE"
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
 
         newLocationMapSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -104,6 +200,49 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
 
 
 
+    fun chargeSpinnerData(){
+
+
+        ArrayAdapter.createFromResource(this.context!!,
+            R.array.categories_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            categorySpinner.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(this.context!!,
+            R.array.hour_am_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            houramSpinner.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(this.context!!,
+            R.array.hour_pm_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            hourPmspinner.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(this.context!!,
+            R.array.days_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            daySpinner.adapter = adapter
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
