@@ -54,7 +54,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
     private lateinit var currentLocation: Location
     private lateinit var addressList: List<Address>
     private var navController: NavController? = null
-
+    var ratingValue = 0.0f
 
 
     override fun onCreateView(
@@ -73,10 +73,13 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
         mapView!!.getMapAsync(this)
 
         chargeSpinnerData()
+        ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            ratingValue = rating
+        }
 
-
-
-
+        saveLocationBtn.setOnClickListener {
+            Toast.makeText(this.context, ratingValue.toString(),Toast.LENGTH_LONG).show()
+        }
 
         addPicPost.setOnClickListener {
             navController!!.navigate(R.id.action_newLocation_to_newPostImageVideoGallery)

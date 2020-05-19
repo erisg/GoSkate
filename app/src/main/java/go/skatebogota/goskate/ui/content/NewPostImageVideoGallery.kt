@@ -122,4 +122,6 @@ class NewPostImageVideoGallery : Fragment() {
     }
 
 
+
+
 }
