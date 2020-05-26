@@ -1,33 +1,27 @@
 package go.skatebogota.goskate.util.adapters
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.content.notifications.AllMessageFragment
 import go.skatebogota.goskate.ui.content.notifications.NotificationFragment
 
-class ViewPagerAdapter(fragment: FragmentManager) : FragmentPagerAdapter(fragment) {
+class ViewPagerAdapter(fragment: FragmentManager ,val context: Context? ) : FragmentPagerAdapter(fragment) {
 
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> {
-                NotificationFragment()
-            }
-            else -> {
-                AllMessageFragment()
-            }
-        }
-    }
+    private val fragmentList = listOf(
+        NotificationFragment(),
+        AllMessageFragment()
+    )
 
-    override fun getCount(): Int {
-        return 2
-    }
+    override fun getItem(position: Int): Fragment =
+        fragmentList[position]
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return when (position) {
-            0 -> "NOTIFICACIONES"
-            else ->{"MENSAJES"}
-        }
-    }
+    override fun getCount(): Int =
+        fragmentList.size
+
+    override fun getPageTitle(position: Int): String? =
+        context?.resources?.getStringArray(R.array.fragment_titles)?.get(position)
 
 }

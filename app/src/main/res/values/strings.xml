@@ -41,9 +41,12 @@
     <string name="add_description">AGREGA DESCRIPCION</string>
     <string name="likes">Me gusta</string>
     <string name="photo_profile">Selecciona una foto de perfil</string>
+    <string name="description__comments_spot">DESCRIPCIONES</string>
+
+    //NAME FRAGMENT
+
     <string name="notifiy">NOTIFICACIONES</string>
     <string name="message">MENSAJES</string>
-    <string name="description__comments_spot">DESCRIPCIONES</string>
 
     <string-array name="categories_array">
         <item>STREET</item>
@@ -70,6 +73,11 @@
         <item>DIA IMPAR BIKE</item>
         <item>DIA PAR BIKE</item>
         <item>DIA IMPAR SKATE</item>
+    </string-array>
+
+    <string-array name="fragment_titles">
+        <item>@string/notifiy</item>
+        <item>@string/message</item>
     </string-array>
 
 </resources>

@@ -87,23 +87,20 @@
                     android:id="@+id/addPicPost"
                     android:layout_width="77dp"
                     android:layout_height="60dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-                <GridView
+                <Gallery
                     android:id="@+id/uriGridView"
-                    android:layout_width="403dp"
-                    android:layout_height="162dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginRight="1dp"
-                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_height="155dp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/addPicPost"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

@@ -17,16 +17,11 @@ class NotificationContainerFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fragmentAdapter = ViewPagerAdapter(fragmentManager!!)
+        val fragmentAdapter = ViewPagerAdapter(fragmentManager!! , this.context)
         viewPager.adapter = fragmentAdapter
         tabLayout.setupWithViewPager(viewPager)
     }
 
 
-    override fun onStart() {
-        val fragmentAdapter = ViewPagerAdapter(fragmentManager!!)
-        viewPager.adapter = fragmentAdapter
-        tabLayout.setupWithViewPager(viewPager)
-        super.onStart()
-    }
+
 }

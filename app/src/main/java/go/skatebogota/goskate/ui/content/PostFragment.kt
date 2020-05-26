@@ -3,13 +3,17 @@ package go.skatebogota.goskate.ui.content
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -33,6 +37,7 @@ class PostFragment : Fragment() {
     var mediaControl: MediaController? = null
     val VIDEO: Int = 3
     lateinit var typePath: String
+    private val RECORD_REQUEST_CODE = 101
 
     companion object {
         private const val PICK_IMAGE_CODE = 1234
@@ -52,11 +57,11 @@ class PostFragment : Fragment() {
 
 
         videoImageView.setOnClickListener {
-            videoFileChooser()
+            requestPermissionVideoGallery()
         }
 
         galeryImageView.setOnClickListener {
-            imageFileChooser()
+            requestPermissionGallery()
         }
 
         btn_save_post.setOnClickListener {
@@ -87,15 +92,39 @@ class PostFragment : Fragment() {
         description = descriptionEditText.text.toString()
         userPlace = placeEditText.text.toString()
         if (userImagePost != null) {
-                viewModelContent.upLoadImagePost(userImagePost, description, userPlace, typePath).observeForever {
-                    if(it == "Successful"){
+            viewModelContent.upLoadImagePost(userImagePost, description, userPlace, typePath)
+                .observeForever {
+                    if (it == "Successful") {
                         Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
-                    }else {
+                    } else {
                         navController!!.navigate(R.id.action_postFragment2_to_homeFragment)
                     }
                 }
 
-            }
+        }
+    }
+
+    private fun requestPermissionGallery() {
+        val galleryPermission = ActivityCompat.checkSelfPermission(this.context!!, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (galleryPermission != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val permissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
+                requestPermissions(permissions, RECORD_REQUEST_CODE) }
+        }else{
+            imageFileChooser()
+        }
+    }
+
+
+    private fun requestPermissionVideoGallery() {
+        val galleryPermission = ActivityCompat.checkSelfPermission(this.context!!, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (galleryPermission != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val permissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
+                requestPermissions(permissions, RECORD_REQUEST_CODE) }
+        }else{
+            videoFileChooser()
+        }
     }
 
     private fun videoFileChooser() {

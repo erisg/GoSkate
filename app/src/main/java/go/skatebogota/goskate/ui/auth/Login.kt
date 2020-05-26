@@ -67,17 +67,7 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun camChooser() {
-        val camPermission =
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
-        val galleryPermission = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        val locationPermission = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-        if (camPermission != PackageManager.PERMISSION_GRANTED || galleryPermission != PackageManager.PERMISSION_GRANTED || locationPermission != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-               // ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE , android.Manifest.permission.CAMERA , android.Manifest.permission.ACCESS_FINE_LOCATION))
-            }
-        }
-    }
+
 
     private fun validateEditText(editText: EditText, message: String) {
         editText.error = message
