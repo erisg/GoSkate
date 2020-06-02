@@ -47,6 +47,8 @@
 
     <string name="notifiy">NOTIFICACIONES</string>
     <string name="message">MENSAJES</string>
+    <string name="new_message">Busca a tus amigos</string>
+    <string name="init_new_chat">INICIAR CONVERSACION</string>
 
     <string-array name="categories_array">
         <item>STREET</item>

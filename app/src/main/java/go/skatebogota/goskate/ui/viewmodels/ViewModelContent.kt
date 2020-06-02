@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import go.skatebogota.goskate.data.models.PostVO
+import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.data.repositories.RepositoryContent
 
 class ViewModelContent : ViewModel() {
@@ -13,10 +14,15 @@ class ViewModelContent : ViewModel() {
     var postVO: PostVO = PostVO()
     var currentUser = repositoryContent.auth
     val mutableData = MutableLiveData<List<PostVO>>()
-    val firebaseResponse : String? = null
+    val firebaseResponse: String? = null
 
 
-    fun upLoadImagePost(userImagePost: Uri?, description: String, userPlace: String, filePath: String): LiveData<String> {
+    fun upLoadImagePost(
+        userImagePost: Uri?,
+        description: String,
+        userPlace: String,
+        filePath: String
+    ): LiveData<String> {
         postVO.imagePost = userImagePost.toString()
         postVO.description = description
         postVO.spot = userPlace
@@ -37,5 +43,15 @@ class ViewModelContent : ViewModel() {
 
     }
 
+    /**
+     * Get all users for new message
+     */
 
+    fun getAllUsersName(): MutableLiveData<List<UserVO>> {
+        val mutableData = MutableLiveData<List<UserVO>>()
+        repositoryContent.getAllUsersName().observeForever { userPost ->
+            mutableData.value = userPost
+        }
+        return mutableData
+    }
 }

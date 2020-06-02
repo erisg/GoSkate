@@ -1,17 +1,14 @@
 package go.skatebogota.goskate.data.repositories
 
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import go.skatebogota.goskate.data.models.UserVO
-import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserInfo
-import go.skatebogota.goskate.util.interfaces.AuthListenerResponseUserRegister
 import java.util.*
 import kotlin.collections.HashMap
+
 
 class RepositoryUser() {
 
@@ -76,5 +73,6 @@ class RepositoryUser() {
             }
         return mutableDataResponse
     }
+
 
 }

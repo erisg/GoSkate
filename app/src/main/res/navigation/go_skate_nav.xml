@@ -52,7 +52,11 @@
         android:id="@+id/notifyFragment"
         android:name="go.skatebogota.goskate.ui.content.notifications.NotificationContainerFragment"
         android:label="NotifyFragment"
-        tools:layout="@layout/notification"/>
+        tools:layout="@layout/notification">
+        <action
+            android:id="@+id/action_notifyFragment_to_allMessageFragment"
+            app:destination="@id/allMessageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/allMessageFragment"
