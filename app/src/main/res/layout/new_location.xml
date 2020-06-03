@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondosiluetas">
+    android:background="@android:color/darker_gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -14,10 +14,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapAddLocation"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapAddLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
         <SearchView
@@ -29,6 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="403dp"
@@ -64,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_layout_30dp"
                 android:layout_marginLeft="@dimen/margin_layout_30dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/add_value"
                 android:textColor="@color/blueDark"
                 android:textStyle="bold"
@@ -87,6 +89,8 @@
                     android:id="@+id/addPicPost"
                     android:layout_width="77dp"
                     android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -180,14 +184,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="380dp"
+                android:layout_height="329dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="1dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/galeryConstraintLayout">
 
@@ -206,13 +210,10 @@
 
                 <Spinner
                     android:id="@+id/categorySpinner"
-                    android:layout_width="249dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginRight="1dp"
+                    android:background="@drawable/circular_image_bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -227,20 +228,15 @@
                     android:text="RESTRICCIONES"
                     android:textColor="@color/blueDark"
                     android:textStyle="bold"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/restrictionConstraintLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="1dp"
-                    android:visibility="gone"
+                    android:layout_width="117dp"
+                    android:layout_height="183dp"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/categoryTextView">
@@ -248,9 +244,8 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout6"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
+                        android:layout_height="80dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -267,7 +262,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
@@ -277,6 +273,8 @@
                                 android:id="@+id/houramSpinner"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/circular_image_bottom"
+                                app:layout_constraintBottom_toTopOf="@+id/hourPmspinner"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -286,152 +284,75 @@
                                 android:id="@+id/hourPmspinner"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/circular_image_bottom"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/houramSpinner" />
+                                app:layout_constraintStart_toStartOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout7"
-                        android:layout_width="162dp"
-                        android:layout_height="71dp"
-                        android:layout_marginEnd="1dp"
-                        android:layout_marginRight="1dp"
+                        android:layout_width="0dp"
+                        android:layout_height="85dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/constraintLayout6">
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                        app:layout_constraintVertical_bias="0.0">
 
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DIAS"
-                            android:textColor="@color/blueDark"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout9"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView22">
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/textView22"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="66dp"
+                                android:text="DIAS"
+                                android:textColor="@color/blueDark"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <Spinner
                                 android:id="@+id/daySpinner"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/circular_image_bottom"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintTop_toBottomOf="@+id/textView22" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/restritionTextConstraint"
-                    android:layout_width="402dp"
-                    android:layout_height="48dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/restrictionConstraintLayout">
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.5" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout8"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/hourTitleTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="HORARIO"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/houramVTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:layout_marginBottom="3dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/hourTitleTextView" />
-
-                        <TextView
-                            android:id="@+id/hourpmVTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginBottom="3dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/houramVTextView" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/textView26"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DIAS"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/dayParView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:layout_marginBottom="3dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-                        <TextView
-                            android:id="@+id/dayImpTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginBottom="3dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/dayPextView" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/restrictionConstraintLayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -445,7 +366,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35"/>
+        app:layout_constraintGuide_percent="0.35" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

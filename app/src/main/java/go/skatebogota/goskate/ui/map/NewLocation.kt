@@ -104,22 +104,21 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
 
         houramSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                restritionTextConstraint.visibility = View.VISIBLE
                when(position){
                    0 ->{
-                       houramVTextView.text = "05:00am"
+                    //   houramVTextView.text = "05:00am"
                    }
                    1 ->{
-                       houramVTextView.text = "06:00am"
+                 //      houramVTextView.text = "06:00am"
                    }
                    2 ->{
-                       houramVTextView.text = "07:00am"
+                  //     houramVTextView.text = "07:00am"
                    }
                    3 ->{
-                       houramVTextView.text = "08:00am"
+                   //    houramVTextView.text = "08:00am"
                    }
                    4 ->{
-                       houramVTextView.text = "09:00am"
+                   //    houramVTextView.text = "09:00am"
                    }
                }
             }
@@ -131,16 +130,15 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
 
         hourPmspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                restritionTextConstraint.visibility = View.VISIBLE
                 when(position){
                     0 ->{
-                        hourpmVTextView.text = "05:00pm"
+                    //    hourpmVTextView.text = "05:00pm"
                     }
                     1 ->{
-                        hourpmVTextView.text = "06:00pm"
+                     //   hourpmVTextView.text = "06:00pm"
                     }
                     2 ->{
-                        hourpmVTextView.text = "07:00am"
+                     //   hourpmVTextView.text = "07:00am"
                     }
                 }
             }
@@ -152,19 +150,18 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
 
         daySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                restritionTextConstraint.visibility = View.VISIBLE
                 when(position){
                     0 ->{
-                        dayImpTextView.text = "DIA PAR SKATE"
+                     //   dayImpTextView.text = "DIA PAR SKATE"
                     }
                     1 ->{
-                        dayImpTextView.text = "DIA IMPAR BIKE"
+                    //    dayImpTextView.text = "DIA IMPAR BIKE"
                     }
                     2 ->{
-                        dayImpTextView.text = "DIA PAR BIKE"
+                    //    dayImpTextView.text = "DIA PAR BIKE"
                     }
                     3 ->{
-                        dayImpTextView.text = "DIA IMPAR SKATE"
+                     //   dayImpTextView.text = "DIA IMPAR SKATE"
                     }
                 }
             }
@@ -206,7 +203,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
     fun chargeSpinnerData(){
 
 
-        ArrayAdapter.createFromResource(this.context!!,
+        ArrayAdapter.createFromResource(this.requireContext(),
             R.array.categories_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
@@ -216,7 +213,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
             categorySpinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(this.context!!,
+        ArrayAdapter.createFromResource(this.requireContext(),
             R.array.hour_am_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
@@ -226,7 +223,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
             houramSpinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(this.context!!,
+        ArrayAdapter.createFromResource(this.requireContext(),
             R.array.hour_pm_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
@@ -236,7 +233,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback, GoogleMap.OnCamer
             hourPmspinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(this.context!!,
+        ArrayAdapter.createFromResource(this.requireContext(),
             R.array.days_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->

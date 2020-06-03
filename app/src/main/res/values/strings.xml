@@ -72,9 +72,10 @@
 
     <string-array name="days_array">
         <item>DIA PAR SKATE</item>
-        <item>DIA IMPAR BIKE</item>
-        <item>DIA PAR BIKE</item>
         <item>DIA IMPAR SKATE</item>
+        <item>TODOS LOS DIAS</item>
+        <item>PRIVADO</item>
+        <item>OTRO</item>
     </string-array>
 
     <string-array name="fragment_titles">

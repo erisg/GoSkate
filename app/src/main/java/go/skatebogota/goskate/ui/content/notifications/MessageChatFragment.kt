@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
 import kotlinx.android.synthetic.main.message_chat.*
 
 class MessageChatFragment : Fragment() {
+
+
+    private lateinit var viewModelContent: ViewModelContent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -19,6 +24,11 @@ class MessageChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
+
+
+        chatNameTextView.text = viewModelContent.userVO
+
 
         sendImageButton.setOnClickListener {
             val message = messageEditText.text.toString()

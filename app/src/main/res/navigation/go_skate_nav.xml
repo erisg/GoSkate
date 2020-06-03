@@ -62,7 +62,11 @@
         android:id="@+id/allMessageFragment"
         android:name="go.skatebogota.goskate.ui.content.notifications.AllMessageFragment"
         android:label="MessageChatFragment"
-        tools:layout="@layout/message_fragment"/>
+        tools:layout="@layout/message_fragment">
+        <action
+            android:id="@+id/action_allMessageFragment_to_messageChatFragment"
+            app:destination="@id/messageChatFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/newPostImageVideoGallery"
@@ -73,6 +77,11 @@
             android:id="@+id/action_newPostImageVideoGallery_to_newLocation"
             app:destination="@id/newLocation" />
     </fragment>
+    <fragment
+        android:id="@+id/messageChatFragment"
+        android:name="go.skatebogota.goskate.ui.content.notifications.MessageChatFragment"
+        android:label="MessageChatFragment"
+        tools:layout="@layout/message_chat"/>
 
 
 </navigation>

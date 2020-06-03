@@ -12,6 +12,7 @@ class ViewModelContent : ViewModel() {
 
     private val repositoryContent = RepositoryContent()
     var postVO: PostVO = PostVO()
+    var userVO : CharSequence? = UserVO().userName
     var currentUser = repositoryContent.auth
     val mutableData = MutableLiveData<List<PostVO>>()
     val firebaseResponse: String? = null

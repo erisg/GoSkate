@@ -2,9 +2,9 @@
 
 buildscript {
     ext {
-        nav_version = '2.2.1'
+        nav_version = '2.2.2'
         play_location = '17.0.0'
-        maps_utils = '1.0.0'
+        maps_utils = '1.0.2'
         room_version = '2.2.5'
         crashlytics_version = '17.0.0-beta03'
         glide_version = '4.11.0'
