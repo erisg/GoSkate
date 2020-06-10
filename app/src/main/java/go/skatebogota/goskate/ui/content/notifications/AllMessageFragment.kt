@@ -39,8 +39,7 @@ class AllMessageFragment : Fragment(){
         floatingActionButton2.setOnClickListener {
             var arrayAdapter: ArrayAdapter<*>?
             var listNames: MutableList<String>? = null
-            val mDialogView =
-                LayoutInflater.from(this.context).inflate(R.layout.search_new_message, null)
+            val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.search_new_message, null)
             val mBuilder = AlertDialog.Builder(this.context).setView(mDialogView)
             val mAlertDialog = mBuilder.show()
             viewModelContent.getAllUsersName().observeForever { userVo ->

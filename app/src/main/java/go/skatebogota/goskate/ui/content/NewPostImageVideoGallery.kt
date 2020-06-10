@@ -29,7 +29,6 @@ class NewPostImageVideoGallery : Fragment() {
     lateinit var typePath: String
     var uriList = ArrayList<Uri>()
     var picture: Uri? = null
-    val galleryMutableList = mutableListOf<Uri>()
     private lateinit var adapter: RecyclerImagesSpot
     private val RECORD_REQUEST_CODE = 101
 
@@ -52,30 +51,31 @@ class NewPostImageVideoGallery : Fragment() {
 
         //SE ELIGE LA FOTO
         saveFloatingActionButton.setOnClickListener {
+
             navController!!.navigate(R.id.action_newPostImageVideoGallery_to_newLocation)
         }
 
         //SE ABRE LA CAMARA PARA TOMAR UNA FOTO
 
         camButton.setOnClickListener {
-            requestPermissionCamera()
+            imageFileChooser()
         }
 
         //SE ABRE LA GALERIA PARA SELECCIONAR VIDEOS
 
         videoButton.setOnClickListener {
-            requestPermissionVideoGallery()
+            videoFileChooser()
         }
 
         //SE ABRE LA GALERIA PARA SELECCIONAR FOTOS
         galleryButton.setOnClickListener {
-            requestPermissionGallery()
+            imageFileChooser()
         }
     }
 
 
     private fun requestPermissionGallery() {
-        val galleryPermission = ActivityCompat.checkSelfPermission(this.context!!, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val galleryPermission = ActivityCompat.checkSelfPermission(this.requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)
         if (galleryPermission != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val permissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
@@ -86,7 +86,7 @@ class NewPostImageVideoGallery : Fragment() {
     }
 
     private fun requestPermissionCamera() {
-        val galleryPermission = ActivityCompat.checkSelfPermission(this.context!!, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val galleryPermission = ActivityCompat.checkSelfPermission(this.requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)
         if (galleryPermission != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val permissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
@@ -97,7 +97,7 @@ class NewPostImageVideoGallery : Fragment() {
     }
 
     private fun requestPermissionVideoGallery() {
-        val galleryPermission = ActivityCompat.checkSelfPermission(this.context!!, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val galleryPermission = ActivityCompat.checkSelfPermission(this.requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)
         if (galleryPermission != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val permissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
