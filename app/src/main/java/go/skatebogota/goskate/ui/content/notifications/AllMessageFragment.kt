@@ -47,7 +47,7 @@ class AllMessageFragment : Fragment(){
                    it.userName
                 }
                 arrayAdapter = ArrayAdapter<Any?>(
-                    this.context!!,
+                    this.requireContext(),
                     android.R.layout.simple_dropdown_item_1line,
                     list
                 )

@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -29,8 +30,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.ui.content.PostFragment
+import go.skatebogota.goskate.util.adapters.RecyclerImagesSpot
 import go.skatebogota.goskate.util.interfaces.IMenuGone
+import kotlinx.android.synthetic.main.include_image.view.*
+import kotlinx.android.synthetic.main.include_video.view.*
 import kotlinx.android.synthetic.main.new_location.*
+import kotlinx.android.synthetic.main.popup_gallery_cam_video.view.*
+import kotlinx.android.synthetic.main.post.*
 import kotlinx.android.synthetic.main.search_new_message.view.*
 import java.util.*
 
@@ -39,6 +46,9 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
 
     private var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
+    private lateinit var adapter: RecyclerImagesSpot
+    val galeryMutableList = mutableListOf<Uri>()
+    val mutableData = MutableLiveData<MutableList<Uri>>()
     var uri: Uri? = null
     var place = LatLng(4.597686, -74.081089)
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -49,6 +59,9 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
     val EXTRA_LATITUD = "Latitud"
     val EXTRA_LONGITUD = "Longitud"
     var marker : Marker? = null
+    val VIDEO: Int = 3
+    val PICK_IMAGE_CODE = 1234
+    private val RECORD_REQUEST_CODE = 101
 
 
     override fun onCreateView(
@@ -81,7 +94,19 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
             val mBuilder = AlertDialog.Builder(this.context).setView(mDialogView)
             val mAlertDialog = mBuilder.show()
 
+            mDialogView.camImageView.setOnClickListener {
+                camChooser()
+                mAlertDialog.dismiss()
+            }
 
+            mDialogView.galleryImageView.setOnClickListener {
+                imageFileChooser()
+                mAlertDialog.dismiss()
+            }
+            mDialogView.videoImageView.setOnClickListener {
+                videoFileChooser()
+                mAlertDialog.dismiss()
+            }
         }
 
 
@@ -239,49 +264,66 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cali))
 
     }
+
+
+    private fun imageFileChooser() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(
+            Intent.createChooser(intent, "SELECCIONA IMAGEN"),
+            PICK_IMAGE_CODE
+        )
+    }
+
+    private fun camChooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_CAMERA_BUTTON
+        startActivityForResult(
+            Intent.createChooser(intent, "SELECCIONA IMAGEN"),
+            PICK_IMAGE_CODE
+        )
+    }
+    private fun videoFileChooser() {
+        val intent = Intent()
+        intent.type = "video/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(intent, "SELECCIONE VIDEO"), VIDEO
+        )
+    }
+
+    /**
+     * Valida si la informacion esta completa
+     */
+
+    fun validateInfoComplete(){
+
+    }
+
+    /**
+     * Carga spinners con informacion de restricciones
+     */
+
     fun chargeSpinnerData() {
 
-        ArrayAdapter.createFromResource(
-            this.requireContext(),
-            R.array.categories_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
+        ArrayAdapter.createFromResource(this.requireContext(), R.array.categories_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             categorySpinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(
-            this.requireContext(),
-            R.array.hour_am_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
+        ArrayAdapter.createFromResource(this.requireContext(), R.array.hour_am_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             houramSpinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(
-            this.requireContext(),
-            R.array.hour_pm_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
+        ArrayAdapter.createFromResource(this.requireContext(), R.array.hour_pm_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             hourPmspinner.adapter = adapter
         }
 
-        ArrayAdapter.createFromResource(
-            this.requireContext(),
-            R.array.days_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
+        ArrayAdapter.createFromResource(this.requireContext(), R.array.days_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             daySpinner.adapter = adapter
         }
     }
@@ -289,12 +331,26 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == PICK_IMAGE_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             uri = data.data
+            galeryMutableList.add(uri!!)
+            mutableData.value = galeryMutableList
 
+            mutableData.observeForever {
+                it?.let { uriGridView.adapter = RecyclerImagesSpot(this.requireContext(), it.toList()) }
+            }
+        } else
+            if (requestCode == VIDEO && resultCode == Activity.RESULT_OK) {
+                galeryMutableList.add(uri!!)
+                mutableData.value = galeryMutableList
 
-        }
+                mutableData.observeForever {
+                    it?.let { uriGridView.adapter = RecyclerImagesSpot(this.requireContext(), it.toList()) }
+                }
+
+            }
     }
+
 
     override fun goneMenu(navigation: BottomNavigationView) {
         navigation.visibility = View.GONE
@@ -312,8 +368,6 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
         return false
     }
 
-
-
     override fun onMarkerDragEnd(p0: Marker?) {
         Toast.makeText(this.context , p0.toString(), Toast.LENGTH_LONG).show()
     }
@@ -325,7 +379,6 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback,
     override fun onMarkerDrag(p0: Marker?) {
         Toast.makeText(this.context , "END", Toast.LENGTH_LONG).show()
     }
-
 
 }
 
