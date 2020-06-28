@@ -18,8 +18,7 @@ class RepositoryContent() {
     private var storageReference: StorageReference? = storage.reference
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var refDataB: DatabaseReference = FirebaseDatabase.getInstance().reference
-    var refDataBaseUserPost: DatabaseReference =
-        FirebaseDatabase.getInstance().reference.child("UsersPost")
+    var refDataBaseUserPost: DatabaseReference = FirebaseDatabase.getInstance().reference.child("UsersPost")
 
     /**
      * Se sube a firebase foto del post
@@ -59,6 +58,7 @@ class RepositoryContent() {
      */
 
     fun getDataPost(): MutableLiveData<List<PostVO>> {
+     //   var photoReference
         val mutableData = MutableLiveData<List<PostVO>>()
         refDataBaseUserPost.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {

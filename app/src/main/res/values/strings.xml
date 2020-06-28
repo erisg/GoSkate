@@ -38,7 +38,7 @@
     <string name="address">DIRECCION</string>
     <string name="timetable">HORARIOS</string>
     <string name="add_place_ubication">AGREGAR UBICACION</string>
-    <string name="add_description">AGREGA COMENTARIOS</string>
+    <string name="add_description">Agrega tus comentarios</string>
     <string name="likes">Me gusta</string>
     <string name="photo_profile">Selecciona una foto de perfil</string>
     <string name="description__comments_spot">DESCRIPCIONES</string>
@@ -49,6 +49,10 @@
     <string name="message">MENSAJES</string>
     <string name="new_message">Busca a tus amigos</string>
     <string name="init_new_chat">INICIAR CONVERSACION</string>
+    <string name="name_spot_title">NOMBRE DEL SPOT</string>
+    <string name="hint_name_spot">"Escribe el nombre del spot "</string>
+    <string name="add">AGREGAR</string>
+    <string name="cancel">CANCELAR</string>
 
     <string-array name="categories_array">
         <item>STREET</item>
@@ -62,12 +66,14 @@
         <item>07:00am</item>
         <item>08:00am</item>
         <item>09:00am</item>
+        <item>SIN HORARIO</item>
     </string-array>
 
     <string-array name="hour_pm_array">
         <item>05:00pm</item>
         <item>06:00pm</item>
         <item>07:00pm</item>
+        <item>SIN HORARIO</item>
     </string-array>
 
     <string-array name="days_array">

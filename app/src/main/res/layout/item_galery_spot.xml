@@ -17,7 +17,7 @@
             android:id="@+id/spotGalerymageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitStart"
             tools:srcCompat="@drawable/ic_action_person" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

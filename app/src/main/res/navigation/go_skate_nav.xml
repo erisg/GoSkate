@@ -19,9 +19,10 @@
         android:name="go.skatebogota.goskate.ui.map.MapsGoSkate"
         android:label="maps_go_skate"
         tools:layout="@layout/maps_go_skate" >
+
         <action
-            android:id="@+id/action_goSkateMap_to_newLocation"
-            app:destination="@id/newLocation" />
+            android:id="@+id/action_goSkateMap_to_mapAddSpot"
+            app:destination="@id/mapAddSpot" />
     </fragment>
     <fragment
         android:id="@+id/ShopFrafment"
@@ -44,8 +45,8 @@
         tools:layout="@layout/new_location">
 
         <action
-            android:id="@+id/action_newLocation_to_newPostImageVideoGallery"
-            app:destination="@id/newPostImageVideoGallery" />
+            android:id="@+id/action_newLocation_to_goSkateMap"
+            app:destination="@id/goSkateMap" />
     </fragment>
 
     <fragment
@@ -73,15 +74,24 @@
         android:name="go.skatebogota.goskate.ui.content.NewPostImageVideoGallery"
         android:label="NewPostImageVideoGallery"
         tools:layout="@layout/galery_photo_video">
-        <action
-            android:id="@+id/action_newPostImageVideoGallery_to_newLocation"
-            app:destination="@id/newLocation" />
+
     </fragment>
     <fragment
         android:id="@+id/messageChatFragment"
         android:name="go.skatebogota.goskate.ui.content.notifications.MessageChatFragment"
         android:label="MessageChatFragment"
         tools:layout="@layout/message_chat"/>
+    <fragment
+        android:id="@+id/mapAddSpot"
+        android:name="go.skatebogota.goskate.ui.map.MapAddSpot"
+        android:label="MapAddSpot" >
+        <action
+            android:id="@+id/action_mapAddSpot_to_newLocation"
+            app:destination="@id/newLocation" />
+        <action
+            android:id="@+id/action_mapAddSpot_to_goSkateMap"
+            app:destination="@id/goSkateMap" />
+    </fragment>
 
 
 </navigation>

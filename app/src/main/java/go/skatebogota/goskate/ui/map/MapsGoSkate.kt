@@ -6,12 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -20,10 +17,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import go.skatebogota.goskate.R
-import go.skatebogota.goskate.data.models.Spot
+import go.skatebogota.goskate.data.models.SpotVO
 import kotlinx.android.synthetic.main.maps_go_skate.*
 
 
@@ -52,7 +48,7 @@ class MapsGoSkate : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         mapView!!.onResume()
         mapView!!.getMapAsync(this)
         newPostFloatingActionButton.setOnClickListener {
-            navController!!.navigate(R.id.action_goSkateMap_to_newLocation)
+            navController!!.navigate(R.id.action_goSkateMap_to_mapAddSpot)
         }
 
     }
@@ -72,32 +68,34 @@ class MapsGoSkate : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             Log.e("oo", "Can't find style. Error: ", e)
         }
 
-        val spots = mutableListOf<Spot>()
+        val spots = mutableListOf<SpotVO>()
 
-        spots.add(
-            Spot(
-                latitude = 4.756754,
-                longitude = -74.110558,
-                spotTittle = "FONTANAR DEL RIO"
-            )
-        )
-        spots.add(Spot(latitude = 4.622893, longitude = -74.172965, spotTittle = "LAS MARGARITAS"))
-        spots.add(Spot(latitude = 4.571505, longitude = -74.136245, spotTittle = "TUNAL"))
-        spots.add(Spot(latitude = 4.597686, longitude = -74.081089, spotTittle = "TERCER MILENIO"))
 
-        spots.forEach {
-            val place = LatLng(it.latitude, it.longitude)
-            var zoomLevel = 11.1f
-            mMap.addMarker(MarkerOptions().position(place).title(it.spotTittle))
+
+//        spots.add(
+//            SpotVO(
+//                latitude = 4.756754,
+//                longitude = -74.110558,
+//                spotTittle = "FONTANAR DEL RIO"
+//            )
+//        )
+//        spots.add(SpotVO(latitude = 4.622893, longitude = -74.172965, spotTittle = "LAS MARGARITAS"))
+//        spots.add(SpotVO(latitude = 4.571505, longitude = -74.136245, spotTittle = "TUNAL"))
+//        spots.add(SpotVO(latitude = 4.597686, longitude = -74.081089, spotTittle = "TERCER MILENIO"))
+
+//        spots.forEach {
+            val place = LatLng(4.648671, -74.120623)
+            var zoomLevel = 11.8f
+            mMap.addMarker(MarkerOptions().position(place).title("loveu"))
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, zoomLevel))
-        }
+//        }
 
 
     }
 
     override fun onMarkerClick(marker: Marker?): Boolean {
         if (marker?.title != null) {
-            val dialog = BottomSheetDialog(this.context!!)
+            val dialog = BottomSheetDialog(this.requireContext())
             val view = layoutInflater.inflate(R.layout.info_spot, null)
             dialog.setContentView(view)
             dialog.show()

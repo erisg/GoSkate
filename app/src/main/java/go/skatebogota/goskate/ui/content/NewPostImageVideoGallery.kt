@@ -1,7 +1,6 @@
 package go.skatebogota.goskate.ui.content
 
 import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,14 +10,13 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.viewmodels.ViewModelContent
-import go.skatebogota.goskate.util.adapters.RecyclerImagesSpot
+import go.skatebogota.goskate.util.layoutManagers.CustomLayoutManager
 import kotlinx.android.synthetic.main.galery_photo_video.*
 
 class NewPostImageVideoGallery : Fragment() {
@@ -29,7 +27,7 @@ class NewPostImageVideoGallery : Fragment() {
     lateinit var typePath: String
     var uriList = ArrayList<Uri>()
     var picture: Uri? = null
-    private lateinit var adapter: RecyclerImagesSpot
+    private lateinit var adapter: CustomLayoutManager
     private val RECORD_REQUEST_CODE = 101
 
     companion object {
@@ -52,7 +50,7 @@ class NewPostImageVideoGallery : Fragment() {
         //SE ELIGE LA FOTO
         saveFloatingActionButton.setOnClickListener {
 
-            navController!!.navigate(R.id.action_newPostImageVideoGallery_to_newLocation)
+
         }
 
         //SE ABRE LA CAMARA PARA TOMAR UNA FOTO

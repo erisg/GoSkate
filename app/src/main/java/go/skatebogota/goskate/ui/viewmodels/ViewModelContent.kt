@@ -15,15 +15,12 @@ class ViewModelContent : ViewModel() {
     var userVO : CharSequence? = UserVO().userName
     var currentUser = repositoryContent.auth
     val mutableData = MutableLiveData<List<PostVO>>()
-    val firebaseResponse: String? = null
 
+    /**
+     * se carga el objeto con la info del post
+     */
 
-    fun upLoadImagePost(
-        userImagePost: Uri?,
-        description: String,
-        userPlace: String,
-        filePath: String
-    ): LiveData<String> {
+    fun upLoadImagePost(userImagePost: Uri?, description: String, userPlace: String, filePath: String): LiveData<String> {
         postVO.imagePost = userImagePost.toString()
         postVO.description = description
         postVO.spot = userPlace
@@ -54,5 +51,14 @@ class ViewModelContent : ViewModel() {
             mutableData.value = userPost
         }
         return mutableData
+    }
+
+
+    /**
+     * se carga info del spot
+     */
+
+    fun uploadSpot(){
+
     }
 }

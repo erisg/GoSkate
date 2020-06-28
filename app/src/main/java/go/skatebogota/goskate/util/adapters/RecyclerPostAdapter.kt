@@ -46,6 +46,7 @@ class RecyclerPostAdapter(private val context: Context) :
         var numberOfLikes: TextView = view.numberLikesTextView
 
         fun bindView(postVO: PostVO) {
+
             Glide.with(context)
                 .load(File(postVO.imagePost!!))
                 .fitCenter()

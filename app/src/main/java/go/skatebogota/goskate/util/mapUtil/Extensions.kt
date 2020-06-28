@@ -2,7 +2,6 @@ package go.skatebogota.goskate.util.mapUtil
 
 import android.location.Location
 import com.google.android.gms.maps.model.LatLng
-import go.skatebogota.goskate.data.models.Spot
 import go.skatebogota.goskate.data.persistence.LocationEntity
 
 
