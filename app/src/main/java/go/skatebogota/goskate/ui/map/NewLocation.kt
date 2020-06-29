@@ -5,9 +5,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Resources
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -20,16 +17,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import go.skatebogota.goskate.R
+import go.skatebogota.goskate.ui.viewmodels.MapsViewModel
 import go.skatebogota.goskate.util.adapters.RecyclerGalerySpot
-import go.skatebogota.goskate.util.layoutManagers.CustomLayoutManager
 import go.skatebogota.goskate.util.interfaces.IMenuGone
 import kotlinx.android.synthetic.main.new_location.*
 import kotlinx.android.synthetic.main.popup_gallery_cam_video.view.*
@@ -41,13 +36,12 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
     val galeryMutableList = mutableListOf<Uri>()
     val mutableData = MutableLiveData<MutableList<Uri>>()
     var uri: Uri? = null
-    private lateinit var addressList: List<Address>
     private var navController: NavController? = null
     var ratingValue = 0.0f
-    val EXTRA_LATITUD = "Latitud"
-    val EXTRA_LONGITUD = "Longitud"
     val VIDEO: Int = 3
     val PICK_IMAGE_CODE = 1234
+    private val viewModelMaps: MapsViewModel by lazy { MapsViewModel.getGeoAccidentManagementModViewModel(fragment = this)!! }
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,6 +51,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
 
         /**
          * se carga mapa para elegir ubicacion
@@ -202,6 +197,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
     }
 
+
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
 
@@ -215,14 +211,13 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
         } catch (e: Resources.NotFoundException) {
             Log.e("oo", "Can't find style. Error: ", e)
         }
-
-        var cali =LatLng(3.4383, -76.5161)
-        googleMap.addMarker(MarkerOptions().position(cali).title("CALI ES CALI"))
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cali , 17f))
+        val spot = viewModelMaps.getLatLong()
+        spot
+//        val location = LatLng(viewModel.spotVO.latitude! !, viewModel.spotVO.longitude!!)
+//        googleMap.addMarker(MarkerOptions().position(location).title("CALI ES CALI"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location , 17f))
 
     }
-
 
     private fun imageFileChooser() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -321,6 +316,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
     override fun goneMenu(navigation: BottomNavigationView) {
         navigation.visibility = View.GONE
     }
+
 
 
 }

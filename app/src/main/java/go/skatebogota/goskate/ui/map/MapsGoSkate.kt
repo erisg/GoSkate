@@ -84,6 +84,7 @@ class MapsGoSkate : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 //        spots.add(SpotVO(latitude = 4.597686, longitude = -74.081089, spotTittle = "TERCER MILENIO"))
 
 //        spots.forEach {
+
             val place = LatLng(4.648671, -74.120623)
             var zoomLevel = 11.8f
             mMap.addMarker(MarkerOptions().position(place).title("loveu"))
