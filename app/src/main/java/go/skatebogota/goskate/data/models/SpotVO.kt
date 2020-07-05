@@ -4,6 +4,7 @@ import android.net.Uri
 
 class SpotVO
 {
+    var spotId: String = ""
     var latitude: Double? = null
     var longitude: Double? = null
     var spotTittle: String? = null
@@ -14,7 +15,7 @@ class SpotVO
     var otherRestriction:String? = null
     var score: Float = 0f
     var comments : String = ""
-    lateinit var gallerySpot : List<Uri>
+    var gallerySpot : List<Uri>? = null
 
     constructor()
 

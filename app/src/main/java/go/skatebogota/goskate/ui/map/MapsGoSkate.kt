@@ -29,11 +29,7 @@ class MapsGoSkate : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     private var mapView: MapView? = null
     private var navController: NavController? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.maps_go_skate, container, false)
     }
 

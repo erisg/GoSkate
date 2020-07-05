@@ -1,20 +1,13 @@
 package go.skatebogota.goskate.ui.viewmodels
 
-import android.app.Application
-import androidx.annotation.NonNull
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.maps.model.LatLng
+import androidx.lifecycle.*
 import go.skatebogota.goskate.data.models.SpotVO
-import go.skatebogota.goskate.data.repositories.GeocodeRepository
-import go.skatebogota.goskate.util.mapUtil.GeocodeResponse
+import go.skatebogota.goskate.data.models.UserVO
+import go.skatebogota.goskate.data.repositories.MapRepository
 
-class MapsViewModel(@NonNull application: Application) : AndroidViewModel(application){
+class MapsViewModel : ViewModel(){
 
+    private val mapRepository = MapRepository()
      var spotVO = SpotVO()
 
     fun setLatLong(lat: Double, long: Double): SpotVO{
@@ -23,21 +16,19 @@ class MapsViewModel(@NonNull application: Application) : AndroidViewModel(applic
         return this.spotVO
     }
 
-    fun getLatLong() = this.spotVO
+    fun getLatLong(): SpotVO {
+        return this.spotVO
+    }
 
-    companion object {
-
-        private var INSTANCE: MapsViewModel? = null
-
-        fun getGeoAccidentManagementModViewModel(fragment: Fragment? = null, fragmentActivity: FragmentActivity? = null): MapsViewModel? {
-            if (INSTANCE == null) {
-                INSTANCE = when (fragment != null) {
-                    true -> ViewModelProviders.of(fragment).get(MapsViewModel::class.java)
-                    false -> ViewModelProviders.of(fragmentActivity!!).get(MapsViewModel::class.java)
-                }
-            }
-            return INSTANCE
+    fun setInfoSpot(nameSpot:String , score:String , comment: String):  MutableLiveData<String>{
+        val mutableData = MutableLiveData<String>()
+        this.spotVO.spotTittle = nameSpot
+        this.spotVO.score = score.toFloat()
+        this.spotVO.comments = comment
+        mapRepository.getInfoSpot(this.spotVO).observeForever { response ->
+            mutableData.value = response
         }
+        return mutableData
     }
 
 }

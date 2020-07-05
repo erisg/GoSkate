@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_goSkateMap_to_mapAddSpot"
             app:destination="@id/mapAddSpot" />
+        <action
+            android:id="@+id/action_goSkateMap_to_infoPost"
+            app:destination="@id/infoPost" />
     </fragment>
     <fragment
         android:id="@+id/ShopFrafment"
@@ -92,6 +95,10 @@
             android:id="@+id/action_mapAddSpot_to_goSkateMap"
             app:destination="@id/goSkateMap" />
     </fragment>
+    <fragment
+        android:id="@+id/infoPost"
+        android:name="go.skatebogota.goskate.ui.map.InfoPost"
+        android:label="infoPost" />
 
 
 </navigation>

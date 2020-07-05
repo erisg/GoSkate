@@ -13,10 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,6 +28,7 @@ import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.viewmodels.MapsViewModel
+import go.skatebogota.goskate.util.ResourcesUtils
 import go.skatebogota.goskate.util.adapters.RecyclerGalerySpot
 import go.skatebogota.goskate.util.interfaces.IMenuGone
 import kotlinx.android.synthetic.main.new_location.*
@@ -33,14 +38,15 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
     private var mapView: MapView? = null
     private lateinit var mMap: GoogleMap
-    val galeryMutableList = mutableListOf<Uri>()
-    val mutableData = MutableLiveData<MutableList<Uri>>()
+    private val galeryMutableList = mutableListOf<Uri>()
+    private val mutableData = MutableLiveData<MutableList<Uri>>()
     var uri: Uri? = null
     private var navController: NavController? = null
     var ratingValue = 0.0f
-    val VIDEO: Int = 3
-    val PICK_IMAGE_CODE = 1234
-    private val viewModelMaps: MapsViewModel by lazy { MapsViewModel.getGeoAccidentManagementModViewModel(fragment = this)!! }
+    private val VIDEO: Int = 3
+    private val PICK_IMAGE_CODE = 1234
+    private val viewModelMaps: MapsViewModel by activityViewModels()
+
 
 
 
@@ -111,6 +117,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
         categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                viewModelMaps.spotVO.category = (view as TextView).text.toString()
                 if (position == 1) {
                     categoryTextView.visibility = View.VISIBLE
                     restrictionConstraintLayout.visibility = View.VISIBLE
@@ -131,23 +138,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
         houramSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                when (position) {
-                    0 -> {
-                          "05:00am"
-                    }
-                    1 -> {
-                        //      houramVTextView.text = "06:00am"
-                    }
-                    2 -> {
-                        //     houramVTextView.text = "07:00am"
-                    }
-                    3 -> {
-                        //    houramVTextView.text = "08:00am"
-                    }
-                    4 -> {
-                        //    houramVTextView.text = "09:00am"
-                    }
-                }
+                viewModelMaps.spotVO.hourAm = (view as TextView).text.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -157,17 +148,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
         hourPmspinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                when (position) {
-                    0 -> {
-                        //    hourpmVTextView.text = "05:00pm"
-                    }
-                    1 -> {
-                        //   hourpmVTextView.text = "06:00pm"
-                    }
-                    2 -> {
-                        //   hourpmVTextView.text = "07:00am"
-                    }
-                }
+                viewModelMaps.spotVO.hourPm = (view as TextView).text.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -177,17 +158,7 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
 
         daySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                when (position) {
-                    3 -> {
-                     //   infoOtherEditText.visibility = View.VISIBLE
-                    }
-                    4 -> {
-                      //  infoOtherEditText.visibility = View.VISIBLE
-                    }
-                    else -> {
-                     //   infoOtherEditText.visibility = View.GONE
-                    }
-                }
+                viewModelMaps.spotVO.days = (view as TextView).text.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -212,10 +183,10 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
             Log.e("oo", "Can't find style. Error: ", e)
         }
         val spot = viewModelMaps.getLatLong()
-        spot
-//        val location = LatLng(viewModel.spotVO.latitude! !, viewModel.spotVO.longitude!!)
-//        googleMap.addMarker(MarkerOptions().position(location).title("CALI ES CALI"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location , 17f))
+        val currentLatLong = LatLng(spot.latitude!! , spot.longitude!!)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong , 17f))
+        mMap.addMarker(MarkerOptions().icon(ResourcesUtils.getBitmapDescriptor(R.drawable.ic_geo_touch_positition, this.requireContext())).position(currentLatLong))
+
 
     }
 
@@ -278,21 +249,22 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
             uri = data.data
             galeryMutableList.add(uri!!)
             mutableData.value = galeryMutableList
+            viewModelMaps.spotVO.gallerySpot = galeryMutableList
 
             mutableData.observeForever {
                 it?.let { photosRecyclerView.adapter = RecyclerGalerySpot(this.requireContext() , it.toList())
                 }
             }
-        } else
-            if (requestCode == VIDEO && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == VIDEO && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                uri = data.data
                 galeryMutableList.add(uri!!)
                 mutableData.value = galeryMutableList
+                viewModelMaps.spotVO.gallerySpot = galeryMutableList
 
                 mutableData.observeForever {
                     it?.let { photosRecyclerView.adapter = RecyclerGalerySpot(this.requireContext() , it.toList())
                     }
                 }
-
             }
         photosRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         photosRecyclerView.layoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.HORIZONTAL ,false)
@@ -304,8 +276,28 @@ class NewLocation : Fragment(), IMenuGone, OnMapReadyCallback {
      */
 
     fun validateInfoComplete(){
-        navController!!.navigate(R.id.action_newLocation_to_goSkateMap)
-        Toast.makeText(this.context, ratingValue.toString(), Toast.LENGTH_LONG).show()
+        val nameSpot = nameSpotEditText.text.toString()
+        val score = ratingValue.toString()
+        val comment = commentEditText.text.toString()
+        when{
+            viewModelMaps.spotVO.latitude == null ->{Toast.makeText(this.requireContext(),"Algo ocurrio con la ubicaion vuelve a intentarlo", Toast.LENGTH_LONG).show()}
+            viewModelMaps.spotVO.longitude == null ->{Toast.makeText(this.requireContext(),"Algo ocurrio con la ubicaion vuelve a intentarlo", Toast.LENGTH_LONG).show()}
+            nameSpot.isEmpty() -> { Toast.makeText(this.requireContext(),"Falta ingresar nombre del spot", Toast.LENGTH_LONG).show()}
+            viewModelMaps.spotVO.category == null ->{Toast.makeText(this.requireContext(),"Falta ingresar una categoria", Toast.LENGTH_LONG).show()}
+            score.isBlank()->{Toast.makeText(this.requireContext(),"Falta ingresar una calificacion", Toast.LENGTH_LONG).show() }
+            comment.isBlank()->{Toast.makeText(this.requireContext(),"Falta ingresar tus comentarios", Toast.LENGTH_LONG).show()}
+            galeryMutableList.isEmpty()->{Toast.makeText(this.requireContext(),"Falta ingresar imagenes del spot", Toast.LENGTH_LONG).show()}
+            else ->{
+                viewModelMaps.setInfoSpot(nameSpot,score,comment).observeForever {
+                    if (it == "Successful") {
+                        navController!!.navigate(R.id.action_newLocation_to_goSkateMap)
+                    } else {
+                        Toast.makeText(this.context, it, Toast.LENGTH_SHORT).show()
+                    }
+                }
+           }
+        }
+
     }
 
 

@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -37,8 +39,8 @@ class MapAddSpot : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var navController: NavController? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var lastLocation: Location
-    private lateinit var viewModel: MapsViewModel
+    private var lastLocation: Location? = null
+    val viewModelMaps: MapsViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,7 +49,6 @@ class MapAddSpot : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MapsViewModel::class.java)
         navController = Navigation.findNavController(view)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.requireActivity())
         getLocation()
@@ -63,7 +64,7 @@ class MapAddSpot : Fragment(), OnMapReadyCallback {
 
 
         addButton.setOnClickListener {
-            viewModel.setLatLong(lastLocation.latitude , lastLocation.longitude)
+            viewModelMaps.setLatLong(lastLocation!!.latitude , lastLocation!!.longitude)
             navController!!.navigate(R.id.action_mapAddSpot_to_newLocation)
         }
 

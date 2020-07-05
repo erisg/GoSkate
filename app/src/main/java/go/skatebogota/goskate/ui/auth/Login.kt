@@ -9,10 +9,13 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import go.skatebogota.goskate.R
 import go.skatebogota.goskate.ui.content.MainActivity
+import go.skatebogota.goskate.ui.viewmodels.MapsViewModel
 import go.skatebogota.goskate.ui.viewmodels.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.register.*
@@ -20,14 +23,14 @@ import java.util.jar.Manifest
 
 class Login : AppCompatActivity() {
 
-    private lateinit var viewModel: UserViewModel
+
+    private val viewModel: UserViewModel by viewModels()
     lateinit var userEmail: String
     lateinit var userPassword: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         if (viewModel.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
         }

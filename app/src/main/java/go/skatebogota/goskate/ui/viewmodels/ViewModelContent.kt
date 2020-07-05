@@ -4,6 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import go.skatebogota.goskate.data.models.PostVO
 import go.skatebogota.goskate.data.models.UserVO
 import go.skatebogota.goskate.data.repositories.RepositoryContent

@@ -39,9 +39,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.btn_post).setOnClickListener(this)
         viewModelContent = ViewModelProviders.of(this).get(ViewModelContent::class.java)
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        adapter = RecyclerPostAdapter(this.context!!)
+        adapter = RecyclerPostAdapter(this.requireContext())
         recyclerPost.setHasFixedSize(true)
-        recyclerPost.layoutManager = LinearLayoutManager(this.context!!)
+        recyclerPost.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerPost.adapter = adapter
         viewModelContent.mutableData.observe(viewLifecycleOwner, Observer {
             adapter.setListData(it)
